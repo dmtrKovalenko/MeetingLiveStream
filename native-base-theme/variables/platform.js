@@ -137,7 +137,7 @@ export default {
 
     // Footer
   footerHeight: 55,
-  footerDefaultBg: (platform === 'ios') ? '#F8F8F8' : androidPallete.lightPrimary,
+  footerDefaultBg: (platform === 'ios') ? '#F8F8F8' : 'transparent',
 
 
     // FooterTab
