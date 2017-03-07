@@ -1,16 +1,37 @@
-import { Player } from 'react-native-audio-streaming';
 import React, { Component, PropTypes } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableNativeFeedback } from 'react-native';
+import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-base';
+import styles from './PlayerStyles.js';
+import ActionButton from '../components/ActionButton/ActionButton';
 
-class PlayerControls extends Component {
+class Player extends Component {
     render() {
-      console.log(Player)
       return (
-          <View > 
-           <Text> Tyt controls </Text>
-          </View> 
+        <Footer>
+            <View style={styles.card}>
+                <CardItem style={styles.cardItem}>
+                    <Left>
+                        <Button style={styles.actionButton} transparent>
+                            <Icon name='refresh' style={styles.icon}/>
+                        </Button>
+                    </Left>
+                    <Body>
+                        
+                    </Body>
+                    <Right>
+                        <Button style={styles.actionButton} transparent>
+                            <Icon name='volume-up' style={styles.icon}/>
+                        </Button>
+                    </Right>
+                </CardItem> 
+            </View>
+            <ActionButton containerStyle={styles.playButton.Container}
+                style={styles.playButton.Button} >
+                <Icon name='play' style={styles.playButton.Icon}/>
+            </ActionButton>         
+        </Footer>
       )
   }
 } 
 
-export default PlayerControls;
+export default Player;

@@ -8,9 +8,7 @@ export default class MeetingStream extends Component {
   render() {
     return (
       <CoreLayout>
-         <View>
-            <Broadcasting />
-         </View>
+          <Broadcasting />
       </CoreLayout>
     );
   }
