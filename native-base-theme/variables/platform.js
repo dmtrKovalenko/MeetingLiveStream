@@ -160,7 +160,7 @@ export default {
     // Header
   toolbarBtnColor: (platform === 'ios') ? '#007aff' : '#fff',
   toolbarDefaultBg: (platform === 'ios') ? '#F8F8F8' : androidPallete.primaryColor,
-  toolbarHeight: (platform === 'ios') ? 64 : 56,
+  toolbarHeight: (platform === 'ios') ? 64 : 58,
   toolbarIconSize: (platform === 'ios') ? 20 : 22,
   toolbarSearchIconSize: (platform === 'ios') ? 20 : 23,
   toolbarInputColor: (platform === 'ios') ? '#CECDD2' : '#fff',
@@ -259,7 +259,7 @@ export default {
 
 
     // Text
-  textColor: '#000',
+  textColor: (platform === 'ios') ? '#000' : 'rgba(0,0,0,.87)' ,
   inverseTextColor: '#fff',
   noteFontSize: 14,
 
