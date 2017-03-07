@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, DeviceEventEmitter, NetInfo } from 'react-native';
+import { debounce } from './utils/CommonFunctions.js'
 import CoreLayout from './layouts/CoreLayout';
 import Broadcasting from './routes/Broadcasting/index.js';
 import RNAudioStreamer from 'react-native-audio-streamer';
@@ -12,20 +13,19 @@ class App extends Component {
 
       this.state = {
          errorMessage: null,
-         duration: null,
+         currentTime: null,
          status: null
       }
+
+      this.debuncedStatusChanged = debounce(this.statusChanged, 500);
   }
 
   componentDidMount() {
     RNAudioStreamer.setUrl('https://cpa.ds.npr.org/kplu/audio/2017/02/eric_verlinde_trio_01.mp3')
-
-    RNAudioStreamer.duration((err, duration) => this.setState({duration: duration}))
-    this.subscription = DeviceEventEmitter.addListener('RNAudioStreamerStatusChanged', this.statusChanged)
+    this.subscription = DeviceEventEmitter.addListener('RNAudioStreamerStatusChanged', this.debuncedStatusChanged)
   }
 
   statusChanged = (status, err) => {
-    console.log(status)
     this.setState({status: status})
 
     if (status == playerStatus.ERROR) {
@@ -44,9 +44,7 @@ class App extends Component {
 
     return (
       <CoreLayout footerComponent={player}>
-          <Broadcasting duration={this.state.duration} 
-            errorMessage={this.state.errorMessage}
-            status={this.state.status} />
+          <Broadcasting status={this.state.status} />
       </CoreLayout>
     );
   }
