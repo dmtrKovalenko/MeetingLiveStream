@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, Text } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
-import { H1, Icon } from 'native-base';
+import { View, Text } from 'react-native';
+import { H1, Icon, Spinner  } from 'native-base';
+import { accentColor } from '../../config/androidColorPallete';
 import styles from './styles.js';
 import Hr from 'react-native-hr';
+import StatusIcon from './components/StatusIcon.js'
+import GetStatusMessage from '../../constants/StatusMessage.js';
 
 class Broadcasting extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.status !== nextProps.status
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.iconContainer}> 
-          <Icon name='ios-radio-outline' style={styles.icon}/>
+        <View style={styles.iconContainer}>
+          <StatusIcon status={this.props.status}/>
         </View>
 
         <View style={styles.titleContainer}>
@@ -19,7 +25,7 @@ class Broadcasting extends Component {
           </H1>
 
           <View style={styles.lineContainer}>
-            <Hr lineColor={'rgba(0, 0, 0, 0.541176)'} text='Трансляция недоступна'/>
+            <Hr lineColor={'rgba(0, 0, 0, 0.541176)'} text={GetStatusMessage(this.props.status)}/>
           </View>
         </View>
 

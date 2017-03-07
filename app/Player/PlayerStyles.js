@@ -48,8 +48,8 @@ export default {
             width: buttonWidth,
             height: buttonWidth, 
             borderRadius: 50, 
-            paddingLeft: 27, 
-            paddingTop: 17
+            paddingLeft: 24, 
+            paddingTop: 18
         },
         Icon: {
             margin: 0,
