@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, View, TouchableNativeFeedback } from 'react-native';
+import { Text, View, TouchableNativeFeedback} from 'react-native';
 import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-base';
+import { nativeRippleColor } from '../config/androidColorPallete.js';
 import styles from './PlayerStyles.js';
 import ActionButton from '../components/ActionButton/ActionButton.js';
 
@@ -18,6 +19,11 @@ class Player extends Component {
         
         this.state.isPaused ? this.props.play() : this.props.pause();
     }
+
+    refresh = () => {
+        this.setState({isPaused: false});
+        this.props.refresh();
+    }
     
     render() {
     const icon = this.state.isPaused 
@@ -29,16 +35,22 @@ class Player extends Component {
             <View style={styles.card}>
                 <CardItem style={styles.cardItem}>
                     <Left>
-                        <Button style={styles.actionButton} transparent>
-                            <Icon name='refresh' style={styles.icon}/>
-                        </Button>
+                        <TouchableNativeFeedback onPress={this.refresh}
+                          background={nativeRippleColor}>
+                            <View style={styles.iconContainer}>
+                                <Icon name='refresh' style={styles.icon}/>
+                            </View>
+                        </TouchableNativeFeedback>
                     </Left>
                     <Body>
                     </Body>
                     <Right>
-                        <Button style={styles.actionButton} transparent>
-                            <Icon name='volume-up' style={styles.icon}/>
-                        </Button>
+                        <TouchableNativeFeedback 
+                          background={nativeRippleColor}>
+                            <View style={styles.iconContainer}>
+                                <Icon name='volume-up' style={styles.icon}/>
+                            </View>
+                        </TouchableNativeFeedback>
                     </Right>
                 </CardItem> 
             </View>

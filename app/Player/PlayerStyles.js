@@ -30,6 +30,12 @@ export default {
         padding: 0,
         margin: 0
     },
+    iconContainer: {
+        width: 40, 
+        height: 40, 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
     icon: {
         justifyContent: 'center',
         fontSize: 25,
