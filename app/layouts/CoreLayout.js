@@ -21,6 +21,8 @@ class CoreLayout extends Component {
         return (
           <StyleProvider style={getTheme(platform)}>
             <Drawer ref={(ref) => { this._drawer = ref; }}
+              type='overlay'
+              panOpenMask={0.2}
               content={<SideBar />}
               onClose={() => this.closeDrawer()}
               tweenHandler={(ratio) => ({ main: { opacity:(2 - ratio) / 2 }})}>

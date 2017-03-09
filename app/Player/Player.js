@@ -4,6 +4,7 @@ import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-
 import { nativeRippleColor } from '../config/androidColorPallete.js';
 import styles from './PlayerStyles.js';
 import ActionButton from '../components/ActionButton/ActionButton.js';
+import IconButton from '../components/IconButton/IconButton.js';
 
 class Player extends Component {
     constructor(props){
@@ -35,22 +36,10 @@ class Player extends Component {
             <View style={styles.card}>
                 <CardItem style={styles.cardItem}>
                     <Left>
-                        <TouchableNativeFeedback onPress={this.refresh}
-                          background={nativeRippleColor}>
-                            <View style={styles.iconContainer}>
-                                <Icon name='refresh' style={styles.icon}/>
-                            </View>
-                        </TouchableNativeFeedback>
+                        <IconButton name='refresh' onPress={this.refresh} />
                     </Left>
-                    <Body>
-                    </Body>
                     <Right>
-                        <TouchableNativeFeedback 
-                          background={nativeRippleColor}>
-                            <View style={styles.iconContainer}>
-                                <Icon name='volume-up' style={styles.icon}/>
-                            </View>
-                        </TouchableNativeFeedback>
+                        <IconButton name='volume-up' />
                     </Right>
                 </CardItem> 
             </View>
