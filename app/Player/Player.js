@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './PlayerStyles.js';
-import IconButton from '../components/IconButton/IconButton.js';
-import ActionButton from '../components/ActionButton/ActionButton.js';
 import { nativeRippleColor } from '../config/androidColorPallete.js';
 import { Text, View, TouchableNativeFeedback} from 'react-native';
 import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-base';
+import IconButton from '../components/IconButton/IconButton.js';
 
 class Player extends Component {
     constructor(props){

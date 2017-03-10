@@ -1,7 +1,6 @@
 export default {
     listItem: {
-        paddingRight: 0,
-       
+        paddingRight: 0
     },
     rippleListItem: {
         flex: 1,
