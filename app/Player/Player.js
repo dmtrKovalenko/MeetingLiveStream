@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import styles from './PlayerStyles.js';
+import IconButton from '../components/IconButton/IconButton.js';
+import ActionButton from '../components/ActionButton/ActionButton.js';
+import { nativeRippleColor } from '../config/androidColorPallete.js';
 import { Text, View, TouchableNativeFeedback} from 'react-native';
 import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-base';
-import { nativeRippleColor } from '../config/androidColorPallete.js';
-import styles from './PlayerStyles.js';
-import ActionButton from '../components/ActionButton/ActionButton.js';
-import IconButton from '../components/IconButton/IconButton.js';
 
 class Player extends Component {
     constructor(props){
@@ -28,7 +28,7 @@ class Player extends Component {
     
     render() {
     const icon = this.state.isPaused 
-        ? <Icon name='play' style={styles.playButton.Icon}/>
+        ? <Icon name='play' style={{...styles.playButton.Icon, ...styles.playButton.PlayIcon}}/>
         : <Icon name='pause' style={styles.playButton.Icon}/>
 
     return (
@@ -43,10 +43,11 @@ class Player extends Component {
                     </Right>
                 </CardItem> 
             </View>
+
             <ActionButton containerStyle={styles.playButton.Container}
                 style={styles.playButton.Button}
                 onPress={this.playPause}>
-                {icon}
+                { icon }
             </ActionButton>
         </View> )
     }
