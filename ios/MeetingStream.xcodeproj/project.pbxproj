@@ -69,7 +69,7 @@
 		85155825CB254A3C81DA9170 /* Skia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CF7038142B14A9889257D8C /* Skia.ttf */; };
 		F1FF1880189643C590FC98D3 /* Times New Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 032B7C5481AB4EDDA876DEE7 /* Times New Roman.ttf */; };
 		AB6B46BD51154D8B9B257F67 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 962433B87EED423EA9BB82E2 /* Zocial.ttf */; };
-		BC1CD06C9F244720832FCE1A /* libReactNativeAudioStreaming.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30BE9C9B111C47B5A6254F76 /* libReactNativeAudioStreaming.a */; };
+		5713A13366A94377974F4CD8 /* libRNAudioStreamer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CBA989189E4F7EAA8FA529 /* libRNAudioStreamer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -323,8 +323,8 @@
 		6CF7038142B14A9889257D8C /* Skia.ttf */ = {isa = PBXFileReference; name = "Skia.ttf"; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		032B7C5481AB4EDDA876DEE7 /* Times New Roman.ttf */ = {isa = PBXFileReference; name = "Times New Roman.ttf"; path = "../node_modules/native-base/Fonts/Times New Roman.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		962433B87EED423EA9BB82E2 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2BC21CCA1840479EBF35A581 /* ReactNativeAudioStreaming.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeAudioStreaming.xcodeproj"; path = "../node_modules/react-native-audio-streaming/ios/ReactNativeAudioStreaming.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		30BE9C9B111C47B5A6254F76 /* libReactNativeAudioStreaming.a */ = {isa = PBXFileReference; name = "libReactNativeAudioStreaming.a"; path = "libReactNativeAudioStreaming.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		711E44B5CED64A4692751F19 /* RNAudioStreamer.xcodeproj */ = {isa = PBXFileReference; name = "RNAudioStreamer.xcodeproj"; path = "../node_modules/react-native-audio-streamer/ios/RNAudioStreamer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		51CBA989189E4F7EAA8FA529 /* libRNAudioStreamer.a */ = {isa = PBXFileReference; name = "libRNAudioStreamer.a"; path = "libRNAudioStreamer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,7 +351,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				BC1CD06C9F244720832FCE1A /* libReactNativeAudioStreaming.a in Frameworks */,
+				5713A13366A94377974F4CD8 /* libRNAudioStreamer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +518,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				2BC21CCA1840479EBF35A581 /* ReactNativeAudioStreaming.xcodeproj */,
+				711E44B5CED64A4692751F19 /* RNAudioStreamer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1123,11 +1123,10 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeetingStream.app/MeetingStream";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streamer\ios\RNAudioStreamer/**",
 				);
 			};
 			name = Debug;
@@ -1148,11 +1147,10 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeetingStream.app/MeetingStream";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streamer\ios\RNAudioStreamer/**",
 				);
 			};
 			name = Release;
@@ -1174,7 +1172,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streamer\ios\RNAudioStreamer/**",
 				);
 			};
 			name = Debug;
@@ -1195,7 +1193,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streamer\ios\RNAudioStreamer/**",
 				);
 			};
 			name = Release;
@@ -1225,11 +1223,10 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streamer\ios\RNAudioStreamer/**",
 				);
 			};
 			name = Debug;
@@ -1259,11 +1256,10 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streamer\ios\RNAudioStreamer/**",
 				);
 			};
 			name = Release;
@@ -1288,7 +1284,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1313,7 +1308,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;

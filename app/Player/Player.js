@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { Text, View, TouchableNativeFeedback } from 'react-native';
 import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-base';
 import styles from './PlayerStyles.js';
-import ActionButton from '../components/ActionButton/ActionButton';
+import ActionButton from '../components/ActionButton/ActionButton.js';
 
 class Player extends Component {
     render() {
       return (
-        <Footer>
+        <View style={styles.container}>
             <View style={styles.card}>
                 <CardItem style={styles.cardItem}>
                     <Left>
@@ -16,7 +16,6 @@ class Player extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        
                     </Body>
                     <Right>
                         <Button style={styles.actionButton} transparent>
@@ -28,9 +27,8 @@ class Player extends Component {
             <ActionButton containerStyle={styles.playButton.Container}
                 style={styles.playButton.Button} >
                 <Icon name='play' style={styles.playButton.Icon}/>
-            </ActionButton>         
-        </Footer>
-      )
+            </ActionButton>
+        </View> )
   }
 } 
 
