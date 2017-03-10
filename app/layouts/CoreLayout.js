@@ -3,7 +3,7 @@ import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Rig
 import { Text, ScrollView } from 'react-native';
 import platform from '../../native-base-theme/variables/platform.js';
 import getTheme from '../../native-base-theme/components';
-import PlayerFooter from '../Player/Player.js';
+import Player from '../Player/Player.js';
 
 class CoreLayout extends Component {
     render() {
@@ -11,13 +11,13 @@ class CoreLayout extends Component {
           <StyleProvider style={getTheme(platform)}>
             <Container>
                 <Header>
-                    <Left>
+                    <Left style={{flex: 0.3}}>
                         <Button transparent>
                             <Icon name='menu' />
                         </Button>
                     </Left>
                     <Body>
-                        <Title> Трансляция </Title>
+                        <Title style={{marginLeft:0}}> Трансляция </Title>
                     </Body>
                     <Right />
                 </Header>
@@ -28,7 +28,9 @@ class CoreLayout extends Component {
                     </Body>
                 </Content>
 
-                <PlayerFooter />
+                <Footer>
+                    {this.props.footerComponent}
+                </Footer>
             </Container>
           </StyleProvider>
         );
