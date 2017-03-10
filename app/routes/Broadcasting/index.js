@@ -1,45 +1,81 @@
+import * as playerStatus from '../../constants/PlayerStatuses.js';
 import React, { Component } from 'react';
-import { AppRegistry, View, Text } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
-import { H1, Icon } from 'native-base';
+import { formatSS } from '../../utils/TimeHelper';
+import { textColor } from '../../config/androidColorPallete';
+import { View, Text } from 'react-native';
+import { H1, Icon  } from 'native-base';
+import { meetingName } from '../../config/project.config.js';
 import styles from './styles.js';
 import Hr from 'react-native-hr';
+import StatusIcon from './components/StatusIcon.js'
+import BackgroundTimer from 'react-native-background-timer';
+import GetStatusMessage from '../../constants/StatusMessage.js';
+import NetworkControls from './components/NetworkControls/NetworkControls.js';
 
 class Broadcasting extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentTime : 0
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.props.status !== nextProps.status ||
+      this.state !== nextState )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.status !== nextProps.status) {
+       if(nextProps.satus == playerStatus.CONNECTIONOFF ||
+          nextProps.status == playerStatus.STOPPED) {
+            this.setState({ currentTime: 0 })
+        }
+    }  
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    //only if status changed
+    if (this.props.status !== prevProps.status) {
+      //if playing start couting time
+      if (this.props.status == playerStatus.PLAYING) {
+        this.timer = BackgroundTimer.setInterval(() => {
+           this.setState({ currentTime: this.state.currentTime + 1 })
+        }, 1000);
+      } 
+      else {
+        //if paused or error throw stop 
+        BackgroundTimer.clearInterval(this.timer)
+      }
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.iconContainer}> 
-          <Icon name='ios-radio-outline' style={styles.icon}/>
+        <View style={styles.iconContainer}>
+          <StatusIcon status={this.props.status}/>
         </View>
 
         <View style={styles.titleContainer}>
           <H1 style={styles.title}> 
-            Сосновая Горка 
+             { meetingName }
           </H1>
 
           <View style={styles.lineContainer}>
-            <Hr lineColor={'rgba(0, 0, 0, 0.541176)'} text='Трансляция недоступна'/>
+            <Hr lineColor={textColor} text={GetStatusMessage(this.props.status)}/>
           </View>
         </View>
 
         <View style={styles.timeContainer}>
             <Text style={styles.timeCounter}> 
-              00:00
+              {formatSS(this.state.currentTime)}
             </Text>
         </View>
 
-        <View style={styles.additionalsContainer}>
-            <Text style={{...styles.additionalText}}> 
-              16 kb/s
-            </Text>
-             <Text style={styles.separator}> 
-              |
-            </Text>
-             <Text style={styles.additionalText}> 
-              0.11 mb
-            </Text>
-        </View>
+        <NetworkControls currentTime={this.state.currentTime} />
       </View>
     );
   }

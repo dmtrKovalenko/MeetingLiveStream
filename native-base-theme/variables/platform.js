@@ -248,7 +248,7 @@ export default {
 
 
     // Spinner
-  defaultSpinnerColor: '#45D56E',
+  defaultSpinnerColor: androidPallete.accentColor,
   inverseSpinnerColor: '#1A191B',
 
 
