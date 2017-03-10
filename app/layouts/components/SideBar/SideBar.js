@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './SideBarStyles.js';
-import AboutModal from '../AboutModal/AboutModal.js';
 import IconButton from '../../../components/IconButton/IconButton.js';
 import { webSiteUrl } from '../../../config/project.config.js';
 import sideBarBackground from '../../../assets/sidebar-background.jpg';

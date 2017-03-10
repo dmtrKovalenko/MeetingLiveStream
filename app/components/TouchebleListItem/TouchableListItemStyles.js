@@ -7,7 +7,7 @@ export default {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         marginHorizontal: -4, //fix rounding of item
-        paddingLeft: 4
+        paddingLeft: 10
     },
     text: {
         fontSize: 15,

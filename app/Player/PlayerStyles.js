@@ -61,6 +61,9 @@ export default {
             margin: 0,
             color: 'white',
             fontSize: 33
+        },
+        PlayIcon: {
+            marginLeft: 3
         }
     }
 }
