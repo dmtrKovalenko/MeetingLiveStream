@@ -9,7 +9,7 @@ const IconButton = props => (
        <TouchableNativeFeedback onPress={props.onPress}
           background={nativeRippleColor}>
             <View style={styles.iconContainer}>
-                <Icon name={props.name} style={styles.icon}/>
+                <Icon name={props.name} style={{...styles.icon, fontSize: props.size || 25 }}/>
             </View>
         </TouchableNativeFeedback> 
     </View>);

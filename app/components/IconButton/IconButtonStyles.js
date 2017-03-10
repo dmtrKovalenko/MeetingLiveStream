@@ -9,7 +9,6 @@ export default {
     },
     icon: {
         justifyContent: 'center',
-        fontSize: 25,
         color: textColor
     },
 }

@@ -23,9 +23,18 @@ class Broadcasting extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.props.status !== nextProps.status ||
-      this.state !== nextState)
+      this.state !== nextState )
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.status !== nextProps.status) {
+       if(nextProps.satus == playerStatus.CONNECTIONOFF ||
+          nextProps.status == playerStatus.STOPPED) {
+            this.setState({ currentTime: 0 })
+        }
+    }  
+  }
+  
   componentDidUpdate(prevProps, prevState) {
     //only if status changed
     if (this.props.status !== prevProps.status) {

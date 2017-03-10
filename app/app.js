@@ -29,7 +29,7 @@ class App extends Component {
   statusChanged = (status, err) => {
     this.setState({status: status})
 
-    if (status == playerStatus.ERROR) {
+    if (status == playerStatus.ERROR || status == playerStatus.STOPPED ) {
        this.checkConnection();
     }
   }

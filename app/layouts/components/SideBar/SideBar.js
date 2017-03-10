@@ -2,66 +2,52 @@ import React, { Component } from 'react';
 import styles from './SideBarStyles.js';
 import AboutModal from '../AboutModal/AboutModal.js';
 import IconButton from '../../../components/IconButton/IconButton.js';
+import { webSiteUrl } from '../../../config/project.config.js';
 import sideBarBackground from '../../../assets/sidebar-background.jpg';
+import TouchableListItem from '../../../components/TouchebleListItem/TouchableListItem.js';
 import { nativeRippleColor } from '../../../config/androidColorPallete.js';
-import { ListItem, Text, H3 } from 'native-base';
-import { View, Image, TouchableNativeFeedback } from 'react-native';
+import { ListItem, Text, H3, Left, Icon, Body } from 'native-base';
+import { View, Image, TouchableNativeFeedback, Alert, Linking } from 'react-native';
 
-class SideBar extends Component {
-    constructor (props) {
-        super(props);
+const showAboutAlert = () => {
+    Alert.alert(
+        'О приложении',
+        `Это приложение разрабатывается и поддерживается для прослушивания трансляции определенного канала вещания. Если вы загрузили это приложение по ошибке, можете просто удалить его. Приносим извинения за предоставленные неудобства`
+    )
+}
 
-        this.state = { 
-            isAboutAppModalOpen : false
-        }
-    }
+const SideBar = props => {
+    return (
+        <View style={styles.container}>
+            <Image source={sideBarBackground} style={styles.image}/>
+            <H3 style={styles.imageOverlay}>
+                Трансляция Собрания 
+            </H3>
 
-    openAboutAppModal = () => this.setState({isAboutAppModalOpen: true})
-    
-    closeAboutAppModal = () => this.setState({isAboutAppModalOpen: false})
+            <Text style={styles.version}>
+                v0.1
+            </Text>
 
-    render() {
-        return ( 
-            <View style={styles.container}>
-                <Image source={sideBarBackground} style={styles.image}/>
-                <H3 style={styles.imageOverlay}>
-                    Трансляция Собрания 
-                </H3>
+            <View style={styles.list}>
+                <TouchableListItem onPress={props.close}
+                    primary
+                    iconName='headset' 
+                    text='Cлушать трансляцию' />
 
-                <View style={styles.list}>
-                    <ListItem style={styles.listItem}>
-                        <TouchableNativeFeedback background={nativeRippleColor}>
-                            <View style={styles.rippleListItem}>
-                                <Text style={styles.textPrimary}>
-                                    Слушать трансляцию
-                                </Text>
-                            </View>
-                        </TouchableNativeFeedback>
-                    </ListItem>
-                    <ListItem style={styles.listItem}>
-                        <TouchableNativeFeedback background={nativeRippleColor}>
-                            <View style={styles.rippleListItem}>
-                                <Text>Открыть веб-сайт</Text>
-                            </View>
-                        </TouchableNativeFeedback>
-                    </ListItem>
-                    <ListItem style={styles.listItem}>
-                            <TouchableNativeFeedback background={nativeRippleColor}>
-                            <View style={styles.rippleListItem}>
-                                <Text>Оставить отзыв</Text>
-                            </View>
-                        </TouchableNativeFeedback>
-                    </ListItem>
-                </View>
-
-                <IconButton name='help' 
-                    style={styles.helpButton}
-                    onPress={this.openAboutAppModal} />
-                <AboutModal isOpen={this.state.isAboutAppModalOpen} 
-                    closeModal={this.closeAboutAppModal}/> 
+                 <TouchableListItem onPress={() => Linking.openURL(webSiteUrl)}
+                    iconName='browsers'
+                    text='Открыть веб-сайт' />
+                
+                 <TouchableListItem 
+                    iconName='chatbubbles'
+                    text='Оставить отзыв' />
             </View>
-        )
-    }
+
+            <IconButton name='help' 
+                size={23}
+                style={styles.helpButton}
+                onPress={showAboutAlert} />
+        </View> )
 }
 
 export default SideBar;
