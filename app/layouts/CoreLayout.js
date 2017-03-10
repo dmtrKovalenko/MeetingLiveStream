@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ScrollView } from 'react-native';
+import { Dimensions, PixelRatio } from 'react-native';
 import platform from '../../native-base-theme/variables/platform.js';
 import getTheme from '../../native-base-theme/components';
 import SideBar from './components/SideBar/SideBar.js';
@@ -7,6 +8,10 @@ import {
     Container, Header, Title, Content, 
     Footer, Button, Left, Right, 
     Body, Icon, StyleProvider, Drawer } from 'native-base';
+
+const deviceWidth = Dimensions.get('window').width;
+const drawerOffset = deviceWidth - 300;
+console.log(drawerOffset);
 
 class CoreLayout extends Component {
     closeDrawer = () => {
@@ -25,6 +30,8 @@ class CoreLayout extends Component {
               panOpenMask={0.2}
               content={<SideBar close={this.closeDrawer}/>}
               onClose={this.closeDrawer}
+              elevation={10}
+              openDrawerOffset={drawerOffset}
               tweenHandler={(ratio) => ({ main: { opacity:(2 - ratio) / 2 }})}>
 
                 <Container>
