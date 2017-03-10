@@ -1,41 +1,60 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, Text } from 'react-native';
+import { View, Text, DeviceEventEmitter, NetInfo } from 'react-native';
+import { debounce } from './utils/CommonFunctions.js'
+import { remoteStreamUrl } from './config/project.config.js'
 import CoreLayout from './layouts/CoreLayout';
 import Broadcasting from './routes/Broadcasting/index.js';
 import RNAudioStreamer from 'react-native-audio-streamer';
 import Player from './Player/Player.js';
+import * as playerStatus from './constants/PlayerStatuses.js';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
       super(props);
 
       this.state = {
          errorMessage: null,
-         duration: null,
+         currentTime: null,
+         status: null
       }
+
+      this.debuncedStatusChanged = debounce(this.statusChanged, 500);
   }
 
   componentDidMount() {
-    RNAudioStreamer.setUrl('http://lacavewebradio.chickenkiller.com:8000/stream.mp3')
+    RNAudioStreamer.setUrl(remoteStreamUrl)
+    this.subscription = DeviceEventEmitter.addListener('RNAudioStreamerStatusChanged', this.debuncedStatusChanged)
+  }
 
-    RNAudioStreamer.duration((err, duration)=> this.setState({duration: duration}))
-    RNAudioStreamer.status((err, status)=>{
-        if (err) {
-            this.setState({errorMessage: err})
-        }
-    })
+  statusChanged = (status, err) => {
+    this.setState({status: status})
+
+    if (status == playerStatus.ERROR || status == playerStatus.STOPPED ) {
+       this.checkConnection();
+    }
+  }
+
+  checkConnection = () => {
+     NetInfo.isConnected.fetch().then(isConnected => {
+         this.setState({status: playerStatus.CONNECTIONOFF})
+     });
+  }
+
+  refreshStream = () => {
+    //reset the url to reconnect to current stream instance
+    RNAudioStreamer.setUrl(remoteStreamUrl);
+    RNAudioStreamer.play();
   }
   
   render() {
-    const player = <Player play={RNAudioStreamer.play} pause={RNAudioStreamer.pause} />
+    const player = <Player play={RNAudioStreamer.play} pause={RNAudioStreamer.pause} refresh={this.refreshStream} />
 
     return (
       <CoreLayout footerComponent={player}>
-          <Broadcasting duration={this.state.duration} 
-            errorMessage={this.state.errorMessage}   />
+          <Broadcasting status={this.state.status} />
       </CoreLayout>
     );
   }
 }
 
-AppRegistry.registerComponent('MeetingStream', () => MeetingStream);
+export default App;
