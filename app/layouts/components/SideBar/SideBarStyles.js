@@ -4,40 +4,44 @@ const deviceHeight = Dimensions.get('window').height;
 
 const imageOverlayPosition = {
    position: 'absolute',
-   top: ( deviceHeight / 4) + 10,
+   top: ( deviceHeight * 0.625) + 10,
 }
 
 export default {
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        padding: 0,
     },
     image: {
-        flex: 1,
+        flex: 3,
+        alignItems: 'flex-end',
+        resizeMode: 'cover',
+        flexDirection: 'row',
+        padding: 10,
+        width: null,
+        height: null
     },
-    imageOverlay: {
-        ...imageOverlayPosition,
-        left: 15,
+    appName: {
         color: 'white',
-        fontSize: 18
+        fontSize: 18,
+        width: 190
     },
     version: {
-        ...imageOverlayPosition,
-        right: 15,
+        width: 90,
         color: 'white',
-        fontSize: 17
+        fontSize: 18,
+        textAlign: 'right'
     },
     list: {
-        marginTop: 20,
-        flex: 2,
-        paddingRight: 15,
+        marginTop: 10,
+        flex: 4,
     },
     textPrimary: {
         color: accentColor,
     },
     helpButton: {
-        position: 'absolute',
-        bottom: 7, 
-        right: 7
+        flex: 1,
+        justifyContent: 'flex-end'
     }
 }

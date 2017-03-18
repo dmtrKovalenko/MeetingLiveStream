@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styles from './SideBarStyles.js';
 import IconButton from '../../../components/IconButton/IconButton.js';
-import { webSiteUrl } from '../../../config/project.config.js';
 import sideBarBackground from '../../../assets/sidebar-background.jpg';
 import TouchableListItem from '../../../components/TouchebleListItem/TouchableListItem.js';
 import { nativeRippleColor } from '../../../config/androidColorPallete.js';
+import { webSiteUrl, appVersion } from '../../../config/project.config.js';
 import { ListItem, Text, H3, Left, Icon, Body } from 'native-base';
 import { View, Image, TouchableNativeFeedback, Alert, Linking } from 'react-native';
 
@@ -18,18 +18,17 @@ const showAboutAlert = () => {
 const SideBar = props => {
     return (
         <View style={styles.container}>
-            <Image source={sideBarBackground} style={styles.image}/>
-            <H3 style={styles.imageOverlay}>
-                Трансляция Собрания 
-            </H3>
-
-            <Text style={styles.version}>
-                v0.1
-            </Text>
+            <Image source={sideBarBackground} style={styles.image}>
+                <Text style={styles.appName}>
+                    Трансляция Собрания
+                </Text>
+                <Text style={styles.version}> 
+                    v{appVersion} 
+                </Text>
+            </Image>
 
             <View style={styles.list}>
-                <TouchableListItem onPress={props.close}
-                    primary
+                <TouchableListItem onPress={props.close} primary
                     iconName='headset' 
                     text='Cлушать трансляцию' />
 
@@ -42,10 +41,11 @@ const SideBar = props => {
                     text='Оставить отзыв' />
             </View>
 
-            <IconButton name='help' 
-                size={23}
-                style={styles.helpButton}
-                onPress={showAboutAlert} />
+            <View style={styles.helpButton}>
+                <TouchableListItem onPress={showAboutAlert}
+                    iconName='help'
+                    text='О приложении' />
+            </View>
         </View> )
 }
 

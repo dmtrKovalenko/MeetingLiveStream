@@ -9,11 +9,11 @@ const TouchableListItem = props => {
     const color = props.primary ? accentColor : textColor;
     
     return (
-       <ListItem style={styles.listItem}>
+       <ListItem style={{...styles.listItem, ...props.style}}>
             <TouchableNativeFeedback background={nativeRippleColor}
                 onPress={props.onPress}>
 
-                <View style={styles.rippleListItem}>
+                <View style={[styles.rippleListItem]}>
                     <Left style={styles.listIcon}>
                         <Icon name={ props.iconName } style={{color: color}} />
                     </Left>

@@ -1,6 +1,8 @@
 export const streamBitrate = 16
 
-export const remoteStreamUrl = 'http://online-kissfm.tavrmedia.ua/KissFM'
+export const appVersion = 0.1
+
+export const remoteStreamUrl = 'http://server.streamme.info:8000/live'
 
 export const meetingName = 'Сосновая Горка'
 

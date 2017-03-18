@@ -3,6 +3,8 @@ import { nativeRippleColor } from '../config/androidColorPallete.js';
 import { Text, View, TouchableNativeFeedback} from 'react-native';
 import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-base';
 import IconButton from '../components/IconButton/IconButton.js';
+import ActionButton from '../components/ActionButton/ActionButton.js';
+import styles from './PlayerStyles.js';
 
 class Player extends Component {
     constructor(props){
@@ -47,7 +49,7 @@ class Player extends Component {
                 onPress={this.playPause}>
                 { icon }
             </ActionButton>
-        </View> )
+        </View>)
     }
 } 
 

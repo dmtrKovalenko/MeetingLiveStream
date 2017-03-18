@@ -36,7 +36,9 @@ class App extends Component {
 
   checkConnection = () => {
      NetInfo.isConnected.fetch().then(isConnected => {
+       if(!isConnected) {
          this.setState({status: playerStatus.CONNECTIONOFF})
+       }
      });
   }
 
