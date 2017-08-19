@@ -71,6 +71,7 @@
 		AB6B46BD51154D8B9B257F67 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 962433B87EED423EA9BB82E2 /* Zocial.ttf */; };
 		5713A13366A94377974F4CD8 /* libRNAudioStreamer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CBA989189E4F7EAA8FA529 /* libRNAudioStreamer.a */; };
 		3249BA56F6494DB38232EA03 /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF1DC25EB674405BAC089E7 /* libRNBackgroundTimer.a */; };
+		10334D9AE8F7456FB8E768C4 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D7B49423B9F4DCCBAD3B1EA /* SimpleLineIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,6 +329,7 @@
 		51CBA989189E4F7EAA8FA529 /* libRNAudioStreamer.a */ = {isa = PBXFileReference; name = "libRNAudioStreamer.a"; path = "libRNAudioStreamer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		8A0224EE84494DFBB167AF51 /* RNBackgroundTimer.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundTimer.xcodeproj"; path = "../node_modules/react-native-background-timer/ios/RNBackgroundTimer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		4DF1DC25EB674405BAC089E7 /* libRNBackgroundTimer.a */ = {isa = PBXFileReference; name = "libRNBackgroundTimer.a"; path = "libRNBackgroundTimer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3D7B49423B9F4DCCBAD3B1EA /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -598,6 +600,7 @@
 				6CF7038142B14A9889257D8C /* Skia.ttf */,
 				032B7C5481AB4EDDA876DEE7 /* Times New Roman.ttf */,
 				962433B87EED423EA9BB82E2 /* Zocial.ttf */,
+				3D7B49423B9F4DCCBAD3B1EA /* SimpleLineIcons.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -995,6 +998,7 @@
 				85155825CB254A3C81DA9170 /* Skia.ttf in Resources */,
 				F1FF1880189643C590FC98D3 /* Times New Roman.ttf in Resources */,
 				AB6B46BD51154D8B9B257F67 /* Zocial.ttf in Resources */,
+				10334D9AE8F7456FB8E768C4 /* SimpleLineIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

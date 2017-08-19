@@ -1,28 +1,19 @@
 import * as playerStatus from './PlayerStatuses.js'
 
-export const notConnected = 'Отстутсвует подключение к интернету'
-
+export const notConnected = 'Отсутствует подключение к интернету'
 export const notAccesible = 'Трансляция не доступна'
-
 export const Active = 'Трансляция активна'
-
 export const Loading = 'Подключение'
 
-export default MapPlayerStateToMessage = (status) => {
-    switch (status) {
-        case playerStatus.BUFFERING : 
-            return Loading;
-            break;
-        case playerStatus.ERROR: 
-            return Loading;
-            break;
-        case playerStatus.CONNECTIONOFF:
-            return notConnected;
-            break;
-        case playerStatus.STOPPED: 
-            return notAccesible;
-            break;
-        default: 
-            return Active
-    }
+const messageMap = {
+  [playerStatus.BUFFERING] : Loading,
+  [playerStatus.ERROR]: Loading,
+  [playerStatus.CONNECTIONOFF]: notConnected,
+  [playerStatus.STOPPED]: notAccesible
+}
+
+export default getStatusMessage = status => {
+  const message = messageMap[status];
+  // if nothing was found return active state
+  return message || Active
 }
