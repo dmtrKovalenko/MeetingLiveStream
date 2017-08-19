@@ -49,11 +49,12 @@ class App extends Component {
   }
   
   render() {
-    const player = <Player play={RNAudioStreamer.play} pause={RNAudioStreamer.pause} refresh={this.refreshStream} />
+    const footer = <Player play={RNAudioStreamer.play} pause={RNAudioStreamer.pause} refresh={this.refreshStream} />
 
     return (
-      <CoreLayout footerComponent={player}>
-          <Broadcasting status={this.state.status} />
+      <CoreLayout footerComponent={footer}>
+        <Broadcasting status={this.state.status} />
+        
       </CoreLayout>
     );
   }
