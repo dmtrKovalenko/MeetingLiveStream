@@ -42,7 +42,7 @@ class Broadcasting extends Component {
       if (this.props.status == playerStatus.PLAYING) {
         this.timer = BackgroundTimer.setInterval(this.updateTimerState, 1000);
       } else {
-        //if paused or error throw stop 
+        //if paused or error throw stop
         BackgroundTimer.clearInterval(this.timer)
       }
     }

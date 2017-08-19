@@ -108,8 +108,8 @@ export default {
   cardDefaultBg: "#fff",
 
   // Color
-  brandPrimary: "#3F51B5",
-  brandInfo: "#3F57D3",
+  brandPrimary: "#03a9f4",
+  brandInfo: "#ffb300",
   brandSuccess: "#5cb85c",
   brandDanger: "#d9534f",
   brandWarning: "#f0ad4e",

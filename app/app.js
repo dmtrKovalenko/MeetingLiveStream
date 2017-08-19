@@ -10,15 +10,15 @@ import * as playerStatus from './constants/PlayerStatuses.js';
 
 class App extends Component {
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-         errorMessage: null,
-         currentTime: null,
-         status: null
-      }
+    this.state = {
+      errorMessage: null,
+      currentTime: null,
+      status: null
+    }
 
-      this.debuncedStatusChanged = debounce(this.statusChanged, 500);
+    this.debuncedStatusChanged = debounce(this.statusChanged, 500);
   }
 
   componentDidMount() {
@@ -27,19 +27,19 @@ class App extends Component {
   }
 
   statusChanged = (status, err) => {
-    this.setState({status: status})
+    this.setState({ status: status })
 
-    if (status == playerStatus.ERROR || status == playerStatus.STOPPED ) {
-       this.checkConnection();
+    if (status == playerStatus.ERROR || status == playerStatus.STOPPED) {
+      this.checkConnection();
     }
   }
 
   checkConnection = () => {
-     NetInfo.isConnected.fetch().then(isConnected => {
-       if(!isConnected) {
-         this.setState({status: playerStatus.CONNECTIONOFF})
-       }
-     });
+    NetInfo.isConnected.fetch().then(isConnected => {
+      if (!isConnected) {
+        this.setState({ status: playerStatus.CONNECTIONOFF })
+      }
+    });
   }
 
   refreshStream = () => {
@@ -47,14 +47,13 @@ class App extends Component {
     RNAudioStreamer.setUrl(remoteStreamUrl);
     RNAudioStreamer.play();
   }
-  
+
   render() {
     const footer = <Player play={RNAudioStreamer.play} pause={RNAudioStreamer.pause} refresh={this.refreshStream} />
 
     return (
       <CoreLayout footerComponent={footer}>
         <Broadcasting status={this.state.status} />
-        
       </CoreLayout>
     );
   }
