@@ -6,7 +6,7 @@ import { View, Text } from 'react-native';
 import { H1, Icon } from 'native-base';
 import { meetingName } from '../../config/project.config.js';
 import styles from './styles.js';
-// import Hr from 'react-native-hr';
+import Hr from '../../components/HR';
 import StatusIcon from './components/StatusIcon.js'
 import BackgroundTimer from 'react-native-background-timer';
 import GetStatusMessage from '../../constants/StatusMessage.js';
@@ -24,7 +24,8 @@ class Broadcasting extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.props.status !== nextProps.status ||
-      this.state !== nextState)
+      this.state !== nextState
+    )
   }
 
   componentWillReceiveProps(nextProps) {
@@ -65,7 +66,7 @@ class Broadcasting extends Component {
           </H1>
 
           <View style={styles.lineContainer}>
-            {/* <Hr lineColor={textColor} text={GetStatusMessage(this.props.status)} /> */}
+            <Hr lineColor={textColor} text={GetStatusMessage(this.props.status)} />
           </View>
         </View>
 

@@ -12,7 +12,7 @@ const messageMap = {
   [playerStatus.STOPPED]: notAccesible
 }
 
-export default MapPlayerStateToMessage = (status) => {
+export default getStatusMessage = status => {
   const message = messageMap[status];
   // if nothing was found return active state
   return message || Active
