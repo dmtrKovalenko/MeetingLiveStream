@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+      "browser": true,
+      "node": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "func-names": ["error", "never"],
+    "react/require-default-props": 0
+  }
+}
