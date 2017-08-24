@@ -13,16 +13,16 @@ const drawerOffset = deviceWidth - 300;
 class CoreLayout extends Component {
   static propTypes = {
     footerComponent: PropTypes.node,
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
+    children: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
+    ]),
   }
 
-  closeDrawer = () => {
-    this.drawer._root.close();
-  };
+  /* eslint-disable no-underscore-dangle */
+  closeDrawer = () => this.drawer._root.close();
 
-  openDrawer = () => {
-    this.drawer._root.open();
-  };
+  openDrawer = () => this.drawer._root.open();
 
   render() {
     return (
@@ -51,7 +51,7 @@ class CoreLayout extends Component {
 
             <Content>
               <Body>
-                {this.props.children}
+                { this.props.children }
               </Body>
             </Content>
           </Container>

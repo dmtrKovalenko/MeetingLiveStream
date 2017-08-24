@@ -22,8 +22,6 @@ class App extends Component {
     this.subscription = DeviceEventEmitter.addListener('RNAudioStreamerStatusChanged', this.debouncedStatusChanged);
   }
 
-  debouncedStatusChanged = debounce(this.statusChanged, 500);
-
   statusChanged = (status) => {
     this.setState({ status });
 
@@ -31,6 +29,8 @@ class App extends Component {
       this.checkConnection();
     }
   }
+
+  debouncedStatusChanged = debounce(this.statusChanged, 500);
 
   checkConnection = () => {
     NetInfo.isConnected.fetch().then((isConnected) => {

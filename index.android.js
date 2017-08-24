@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import { AppRegistry, View, Text } from 'react-native';
-import CoreLayout from './app/layouts/CoreLayout';
-import App from './app/app.js';
+import React from 'react';
+import { AppRegistry } from 'react-native';
 
-export default class MeetingStream extends Component {
-  render() {
-    return <App />
-  }
-}
+import App from './app/app';
+
+
+const MeetingStream = () => <App />;
 
 AppRegistry.registerComponent('MeetingStream', () => MeetingStream);
+
+export default MeetingStream;
