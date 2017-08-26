@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Dimensions } from 'react-native';
 import { Container, Header, Title, Content, Button, Left, Right, Body, Icon, StyleProvider, Drawer } from 'native-base';
 
+import Player from '../Player/PlayerContainer';
 import SideBar from './components/SideBar/SideBar';
 import platform from '../../native-base-theme/variables/platform';
 import getTheme from '../../native-base-theme/components';
@@ -12,7 +13,6 @@ const drawerOffset = deviceWidth - 300;
 
 class CoreLayout extends Component {
   static propTypes = {
-    footerComponent: PropTypes.node,
     children: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.arrayOf(PropTypes.node),
@@ -56,7 +56,7 @@ class CoreLayout extends Component {
             </Content>
           </Container>
 
-          { this.props.footerComponent}
+          <Player />
         </Drawer>
       </StyleProvider>
     );

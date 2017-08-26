@@ -1,40 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import RNAudioStreamer from 'react-native-audio-streamer';
+import { View, DeviceEventEmitter } from 'react-native';
 import { CardItem, Left, Right, Icon } from 'native-base';
 
 import styles from './PlayerStyles';
 import IconButton from '../components/IconButton/IconButton';
 import ActionButton from '../components/ActionButton/ActionButton';
+import { remoteStreamUrl } from '../config/project.config';
 
 class Player extends Component {
   static propTypes = {
-    play: PropTypes.func,
-    pause: PropTypes.func,
-    refresh: PropTypes.func,
+    isPlaying: PropTypes.bool,
+    changeStatus: PropTypes.func.isRequired,
   }
 
-  state = {
-    isPaused: true,
+  componentDidMount() {
+    RNAudioStreamer.setUrl(remoteStreamUrl);
+
+    this.subscription = DeviceEventEmitter.addListener(
+      'RNAudioStreamerStatusChanged',
+      this.props.changeStatus,
+    );
   }
 
   playPause = () => {
-    this.setState({ isPaused: !this.state.isPaused });
-
-    this.state.isPaused
-      ? this.props.play()
-      : this.props.pause();
+    this.props.isPlaying
+      ? RNAudioStreamer.pause()
+      : RNAudioStreamer.play();
   }
 
   refresh = () => {
-    this.setState({ isPaused: false });
-    this.props.refresh();
+    // reset the url to reconnect to current stream instance
+    RNAudioStreamer.setUrl(remoteStreamUrl);
+    RNAudioStreamer.play();
   }
 
   render() {
-    const icon = this.state.isPaused
-      ? <Icon name="play" style={{ ...styles.playButton.Icon, ...styles.playButton.PlayIcon }} />
-      : <Icon name="pause" style={styles.playButton.Icon} />;
+    const icon = this.props.isPlaying
+      ? <Icon name="pause" style={styles.playButton.Icon} />
+      : <Icon name="play" style={{ ...styles.playButton.Icon, ...styles.playButton.PlayIcon }} />;
 
     return (
       <View style={styles.container}>

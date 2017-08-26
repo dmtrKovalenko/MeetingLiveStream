@@ -6,7 +6,7 @@ export const lightPrimary = '#FF6F00';
 
 export const accentColor = '#ffb300';
 
-export const textColor = 'rgba(0, 0, 0, 0.541176)';
+export const textColor = 'rgba(0, 0, 0, 0.54)';
 
 export const highlightColor = '#FAFAFA';
 
