@@ -1,18 +1,20 @@
 {
   "name": "MeetingStream",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
+    "debounce": "^1.0.2",
     "native-base": "^2.0.11",
     "prop-types": "^15.5.10",
     "react": "^16.0.0-alpha.12",
     "react-native": "^0.47.0",
     "react-native-audio-streamer": "0.0.9",
     "react-native-background-timer": "^1.0.0",
+    "react-native-push-notification": "^3.0.1",
     "react-native-vector-icons": "^4.3.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
