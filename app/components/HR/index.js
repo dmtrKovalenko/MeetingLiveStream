@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput
-} from 'react-native';
+import { Text, View } from 'react-native';
 
 const styles = {
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   },
   text: {
     textAlign: 'center',
     marginLeft: 15,
-    marginRight: 15
-  }
-}
+    marginRight: 15,
+  },
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 8,
+    marginRight: 8,
+  },
+};
 
 class Hr extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Hr extends Component {
   }
 
   renderLine(key) {
-    return <View key={key} style={[styles.line, this.props.lineStyle]} />
+    return <View key={key} style={[styles.line, this.props.lineStyle]} />;
   }
 
   renderText(key) {
@@ -38,41 +39,34 @@ class Hr extends Component {
       <View key={key}>
         <Text style={[styles.text, this.props.textStyle]}> {this.props.text} </Text>
       </View>
-    )
+    );
   }
 
   renderInner() {
     if (!this.props.text) {
-      return this.renderLine()
+      return this.renderLine();
     }
 
     return [
       this.renderLine(1),
       this.renderText(2),
-      this.renderLine(3)
-    ]
+      this.renderLine(3),
+    ];
   }
 
   render() {
     return (
-      <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: this.props.marginLeft, marginRight: this.props.marginRight }}>
+      <View style={styles.container}>
         {this.renderInner()}
       </View>
-    )
+    );
   }
 }
 
 Hr.propTypes = {
   lineStyle: PropTypes.shape({}),
   text: PropTypes.string,
-  marginLeft: PropTypes.number,
-  marginRight: PropTypes.number,
-  textStyle: PropTypes.shape({})
-};
-
-Hr.defaultProps = {
-  marginLeft: 8,
-  marginRight: 8
+  textStyle: PropTypes.shape({}),
 };
 
 export default Hr;

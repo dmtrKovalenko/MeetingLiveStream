@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native'
-import { primaryColor, textColor } from '../config/androidColorPallete.js'
+import { primaryColor, textColor } from '../config/androidColorPallete';
 
 const buttonWidth = 70;
 
@@ -18,27 +17,27 @@ export default {
     flex: 1,
     elevation: 3,
     borderTopColor: '#ccc',
-    borderTopWidth: 0.1
+    borderTopWidth: 0.1,
   },
   cardItem: {
     paddingLeft: 40,
     paddingRight: 40,
-    overflow: 'visible'
+    overflow: 'visible',
   },
   actionButton: {
     padding: 0,
-    margin: 0
+    margin: 0,
   },
   iconContainer: {
     width: 40,
     height: 40,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   icon: {
     justifyContent: 'center',
     fontSize: 25,
-    color: textColor
+    color: textColor,
   },
   playButton: {
     Container: {
@@ -54,15 +53,15 @@ export default {
       height: buttonWidth,
       borderRadius: 50,
       paddingLeft: 24,
-      paddingTop: 18
+      paddingTop: 18,
     },
     Icon: {
       margin: 0,
       color: 'white',
-      fontSize: 33
+      fontSize: 33,
     },
     PlayIcon: {
-      marginLeft: 3
-    }
-  }
-}
+      marginLeft: 3,
+    },
+  },
+};

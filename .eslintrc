@@ -1,0 +1,24 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "react-native"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:react-native/all"
+  ],
+  "rules": {
+    "func-names": [
+      "error",
+      "never"
+    ],
+    "consistent-return": 0,
+    "no-unused-expressions": 0,
+    "react/require-default-props": 0,
+    "react/jsx-filename-extension": 0
+  }
+}

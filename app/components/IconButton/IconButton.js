@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from './IconButtonStyles.js';
+import PropTypes from 'prop-types';
 import { Icon } from 'native-base';
-import { nativeRippleColor } from '../../config/androidColorPallete.js';
-import { TouchableNativeFeedback, View } from 'react-native'
+import { TouchableNativeFeedback, View } from 'react-native';
+
+import styles from './IconButtonStyles';
+import { nativeRippleColor } from '../../config/androidColorPallete';
 
 const IconButton = props => (
   <View style={props.style}>
@@ -11,10 +13,20 @@ const IconButton = props => (
       background={nativeRippleColor}
     >
       <View style={styles.iconContainer}>
-        <Icon name={props.name} style={{ ...styles.icon, fontSize: props.size || 25 }} />
+        <Icon
+          name={props.name}
+          style={{ ...styles.icon, fontSize: props.size || 25 }}
+        />
       </View>
     </TouchableNativeFeedback>
   </View>
 );
+
+IconButton.propTypes = {
+  size: PropTypes.number,
+  style: PropTypes.shape({ }),
+  onPress: PropTypes.func,
+  name: PropTypes.string,
+};
 
 export default IconButton;

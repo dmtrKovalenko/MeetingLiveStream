@@ -1,24 +1,42 @@
 import React from 'react';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import styles from '../styles.js';
+import PropTypes from 'prop-types';
 import { Icon, Spinner } from 'native-base';
-import { accentColor } from '../../../config/androidColorPallete.js';
-import * as playerStatus from '../../../constants/PlayerStatuses.js';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-const StatusIcon = ({ status }) => {
-  if (status === playerStatus.BUFFERING || status === playerStatus.ERROR) {
-    return <Spinner color={accentColor} />
+import styles from '../styles';
+import DebouncedRenderer from '../../../components/DebouncedRenderer';
+import { accentColor } from '../../../config/androidColorPallete';
+import * as playerStatus from '../../../constants/PlayerStatuses';
+
+export default class StatusIcon extends DebouncedRenderer {
+  static propTypes = {
+    status: PropTypes.string.isRequired,
   }
 
-  if (status === playerStatus.STOPPED) {
-    return <Icon name='ios-mic-off' style={styles.icon} />
+  shouldComponentUpdate = (nextProps, nextState) => (
+    this.props.status !== nextProps.status ||
+    this.state !== nextState
+  )
+
+  get updateImmediate() {
+    const { status } = this.props;
+
+    return status === playerStatus.BUFFERING;
   }
 
-  if (status === playerStatus.CONNECTIONOFF) {
-    return <MaterialIcon name="signal-wifi-off" style={styles.icon} />
+  render() {
+    const { status } = this.state;
+
+    if (status === playerStatus.BUFFERING || status === playerStatus.ERROR) {
+      return <Spinner color={accentColor} />;
+    }
+    if (status === playerStatus.STOPPED) {
+      return <Icon name="ios-mic-off" style={styles.icon} />;
+    }
+    if (status === playerStatus.CONNECTIONOFF) {
+      return <MaterialIcon name="signal-wifi-off" style={styles.icon} />;
+    }
+
+    return <Icon name="ios-radio-outline" style={styles.icon} />;
   }
-
-  return <Icon name='ios-radio-outline' style={styles.icon} />
-};
-
-export default StatusIcon;
+}

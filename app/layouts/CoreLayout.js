@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
-import { Dimensions, PixelRatio } from 'react-native';
-import platform from '../../native-base-theme/variables/platform.js';
+import PropTypes from 'prop-types';
+import { Dimensions } from 'react-native';
+import { Container, Header, Title, Content, Button, Left, Right, Body, Icon, StyleProvider, Drawer } from 'native-base';
+
+import Player from '../Player/PlayerContainer';
+import SideBar from './components/SideBar/SideBar';
+import platform from '../../native-base-theme/variables/platform';
 import getTheme from '../../native-base-theme/components';
-import SideBar from './components/SideBar/SideBar.js';
-import {
-  Container, Header, Title, Content,
-  Footer, Button, Left, Right,
-  Body, Icon, StyleProvider, Drawer
-} from 'native-base';
 
 const deviceWidth = Dimensions.get('window').width;
 const drawerOffset = deviceWidth - 300;
 
 class CoreLayout extends Component {
-  closeDrawer = () => {
-    this._drawer._root.close()
-  };
+  static propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
+    ]),
+  }
 
-  openDrawer = () => {
-    this._drawer._root.open()
-  };
+  /* eslint-disable no-underscore-dangle */
+  closeDrawer = () => this.drawer._root.close();
+
+  openDrawer = () => this.drawer._root.open();
 
   render() {
     return (
@@ -29,7 +31,7 @@ class CoreLayout extends Component {
           type="overlay"
           panOpenMask={0.80}
           captureGestures="open"
-          ref={ref => (this._drawer = ref)}
+          ref={(ref) => { this.drawer = ref; }}
           content={<SideBar close={this.closeDrawer} />}
           onClose={this.closeDrawer}
           openDrawerOffset={drawerOffset}
@@ -38,7 +40,7 @@ class CoreLayout extends Component {
             <Header>
               <Left style={{ flex: 0.3 }}>
                 <Button transparent onPress={this.openDrawer}>
-                  <Icon name='menu' />
+                  <Icon name="menu" />
                 </Button>
               </Left>
               <Body>
@@ -49,16 +51,16 @@ class CoreLayout extends Component {
 
             <Content>
               <Body>
-                {this.props.children}
+                { this.props.children }
               </Body>
             </Content>
           </Container>
 
-         { this.props.footerComponent}
+          <Player />
         </Drawer>
       </StyleProvider>
     );
   }
 }
 
-export default CoreLayout
+export default CoreLayout;

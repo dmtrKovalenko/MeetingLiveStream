@@ -1,4 +1,5 @@
-import { Platform, Dimensions, PixelRatio } from 'react-native';
+import { Dimensions } from 'react-native';
+
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
@@ -9,7 +10,7 @@ export default {
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: deviceHeight / 15,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   additionalText: {
     fontSize: 19,
@@ -19,6 +20,6 @@ export default {
     fontWeight: 'bold',
     color: 'black',
     marginLeft: 5,
-    marginRight: 5
-  }
-}
+    marginRight: 5,
+  },
+};

@@ -1,5 +1,5 @@
-import { Platform, Dimensions, PixelRatio } from 'react-native';
-import { textColor } from '../../config/androidColorPallete'
+import { Dimensions } from 'react-native';
+import { textColor } from '../../config/androidColorPallete';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -27,27 +27,27 @@ export default {
   },
   titleContainer: {
     flex: 1.5,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
     fontSize: 30,
     color: textColor,
-    lineHeight: 40
+    lineHeight: 40,
   },
   lineContainer: {
     marginTop: 5,
     marginBottom: 50,
     paddingLeft: linePadding,
     paddingRight: linePadding,
-    width: deviceWidth
+    width: deviceWidth,
   },
   timeContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-end',
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   timeCounter: {
-    fontSize: 40
-  }
-}
+    fontSize: 40,
+  },
+};

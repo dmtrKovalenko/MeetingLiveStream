@@ -1,12 +1,4 @@
-import { Dimensions, PixelRatio } from 'react-native';
-import { accentColor } from '../../../config/androidColorPallete.js';
-
-const deviceHeight = Dimensions.get('window').height;
-
-const imageOverlayPosition = {
-  position: 'absolute',
-  top: (deviceHeight * 0.625) + 10,
-}
+import { accentColor } from '../../../config/androidColorPallete';
 
 export default {
   container: {
@@ -21,18 +13,18 @@ export default {
     flexDirection: 'row',
     padding: 10,
     width: null,
-    height: null
+    height: null,
   },
   appName: {
     color: 'white',
     fontSize: 18,
-    width: 190
+    width: 190,
   },
   version: {
     width: 90,
     color: 'white',
     fontSize: 18,
-    textAlign: 'right'
+    textAlign: 'right',
   },
   list: {
     marginTop: 10,
@@ -43,6 +35,6 @@ export default {
   },
   helpButton: {
     flex: 1,
-    justifyContent: 'flex-end'
-  }
-}
+    justifyContent: 'flex-end',
+  },
+};

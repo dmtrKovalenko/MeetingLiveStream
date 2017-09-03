@@ -1,59 +1,68 @@
 import React, { Component } from 'react';
-import { nativeRippleColor } from '../config/androidColorPallete.js';
-import { Text, View, TouchableNativeFeedback } from 'react-native';
-import { Card, CardItem, Body, Button, Left, Right, Icon, Footer } from 'native-base';
+import PropTypes from 'prop-types';
+import RNAudioStreamer from 'react-native-audio-streamer';
+import { View, DeviceEventEmitter } from 'react-native';
+import { CardItem, Left, Right, Icon } from 'native-base';
 
-import IconButton from '../components/IconButton/IconButton.js';
-import ActionButton from '../components/ActionButton/ActionButton.js';
-import styles from './PlayerStyles.js';
+import styles from './PlayerStyles';
+import IconButton from '../components/IconButton/IconButton';
+import ActionButton from '../components/ActionButton/ActionButton';
+import { remoteStreamUrl } from '../config/project.config';
 
 class Player extends Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    isPlaying: PropTypes.bool,
+    changeStatus: PropTypes.func.isRequired,
+  }
 
-    this.state = {
-      isPaused: true
-    }
+  componentDidMount() {
+    RNAudioStreamer.setUrl(remoteStreamUrl);
+
+    this.subscription = DeviceEventEmitter.addListener(
+      'RNAudioStreamerStatusChanged',
+      this.props.changeStatus,
+    );
   }
 
   playPause = () => {
-    this.setState({ isPaused: !this.state.isPaused });
-
-    this.state.isPaused 
-      ? this.props.play() 
-      : this.props.pause();
+    this.props.isPlaying
+      ? RNAudioStreamer.pause()
+      : RNAudioStreamer.play();
   }
 
   refresh = () => {
-    this.setState({ isPaused: false });
-    this.props.refresh();
+    // reset the url to reconnect to current stream instance
+    RNAudioStreamer.setUrl(remoteStreamUrl);
+    RNAudioStreamer.play();
   }
 
   render() {
-    const icon = this.state.isPaused
-      ? <Icon name='play' style={{ ...styles.playButton.Icon, ...styles.playButton.PlayIcon }} />
-      : <Icon name='pause' style={styles.playButton.Icon} />
+    const icon = this.props.isPlaying
+      ? <Icon name="pause" style={styles.playButton.Icon} />
+      : <Icon name="play" style={{ ...styles.playButton.Icon, ...styles.playButton.PlayIcon }} />;
 
     return (
       <View style={styles.container}>
         <View style={styles.card}>
           <CardItem style={styles.cardItem}>
             <Left>
-              <IconButton name='refresh' onPress={this.refresh} />
+              <IconButton name="refresh" onPress={this.refresh} />
             </Left>
             <Right>
-              <IconButton name='volume-up' />
+              <IconButton name="volume-up" />
             </Right>
           </CardItem>
         </View>
 
-        <ActionButton style={styles.playButton.Button}
+        <ActionButton
+          style={styles.playButton.Button}
           containerStyle={styles.playButton.Container}
           onPress={this.playPause}
         >
           {icon}
         </ActionButton>
-      </View>)
+      </View>
+    );
   }
 }
 
