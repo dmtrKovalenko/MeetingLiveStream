@@ -2,12 +2,11 @@ import React from 'react';
 import { Text } from 'native-base';
 import { View, Image, Alert, Linking } from 'react-native';
 
-import styles from './SideBarStyles.js';
+import styles from './SideBarStyles';
+import { version } from '../../../../package.json';
+import { webSiteUrl, appDescription } from '../../../config/project.config';
 import sideBarBackground from '../../../assets/sidebar-background.jpg';
 import TouchableListItem from '../../../components/TouchebleListItem/TouchableListItem';
-
-import { version } from '../../../../package.json';
-import { webSiteUrl, appDescription } from '../../../config/project.config.js';
 
 const showAboutAlert = () => Alert.alert('О приложении', appDescription);
 
@@ -15,7 +14,7 @@ const SideBar = props => (
   <View style={styles.container}>
     <Image source={sideBarBackground} style={styles.image}>
       <Text style={styles.appName}>
-          Трансляция Собрания
+        Трансляция Собрания
       </Text>
       <Text style={styles.version}>
         {version}
