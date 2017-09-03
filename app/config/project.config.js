@@ -2,7 +2,9 @@ export const streamBitrate = 16;
 
 // http://64.78.234.165:8000/ALOHAJOE?icy=http
 // http://listen.shoutcast.com/my-jw-stream-1
-export const remoteStreamUrl = 'http://64.78.234.165:8000/ALOHAJOE?icy=http';
+export const remoteStreamUrl = __DEV__
+  ? 'http://64.78.234.165:8000/ALOHAJOE?icy=http'
+  : 'http://listen.shoutcast.com/my-jw-stream-1';
 
 export const meetingName = 'Сосновая Горка';
 
