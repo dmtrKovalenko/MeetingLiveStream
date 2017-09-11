@@ -7,10 +7,11 @@ import * as statuses from '../constants/PlayerStatuses';
 import { displayStatusNotification } from '../utils/NotificationsManager';
 
 const statusNotification = debounce(displayStatusNotification, 300);
-export const statusChanged = () => {
-  statusNotification(status);
+export const statusChanged = (status) => {
+  displayStatusNotification(status);
   return ({
     type: types.PLAYER_STATUS_CHANGED,
+    payload: status,
   });
 };
 

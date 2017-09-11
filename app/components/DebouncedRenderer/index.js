@@ -15,5 +15,5 @@ export default class DebouncedRenderer extends React.Component {
 
   updateState = () => this.setState({ ...this.props });
 
-  debouncedUpdate = debounce(this.updateState, 1000)
+  debouncedUpdate = debounce(this.updateState, 300)
 }

@@ -22,7 +22,7 @@ export default class StatusMessage extends DebouncedRenderer {
   get updateImmediate() {
     const { status } = this.props;
 
-    return status === playerStatus.BUFFERING;
+    return status !== playerStatus.STOPPED;
   }
 
   render() {
