@@ -1,6 +1,6 @@
 import PushNotification from 'react-native-push-notification';
 import getStatusMessage from '../constants/StatusMessage';
-import { STOPPED } from '../constants/PlayerStatuses';
+import { STOPPED, PLAYING, PAUSED } from '../constants/PlayerStatuses';
 import { meetingName } from '../config/project.config';
 
 const statusNotificationId = '1234';
@@ -10,17 +10,19 @@ export const cancelAllNotifications = () => {
 };
 
 export const displayStatusNotification = (status) => {
-  status === STOPPED
+  if (status === STOPPED) {
     // cancel all because there is a trouble in react-native-push-notification
     // with cancelling particular notification on Android
-    ? cancelAllNotifications()
-    : PushNotification.localNotification({
-      id: statusNotificationId,
-      autoCancel: false,
-      vibrate: false,
-      ongoing: true,
-      title: getStatusMessage(status),
-      message: meetingName,
-      playSound: false,
-    });
+    return cancelAllNotifications();
+  }
+
+  PushNotification.localNotification({
+    id: statusNotificationId,
+    autoCancel: false,
+    vibrate: false,
+    ongoing: status === PLAYING || status === PAUSED,
+    title: getStatusMessage(status),
+    message: meetingName,
+    playSound: false,
+  });
 };
