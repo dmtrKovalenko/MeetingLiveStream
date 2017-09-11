@@ -20,7 +20,7 @@ class Player extends Component {
 
     this.subscription = DeviceEventEmitter.addListener(
       'RNAudioStreamerStatusChanged',
-      this.props.changeStatus,
+      status => this.props.changeStatus(status, this.refresh),
     );
   }
 
@@ -31,6 +31,7 @@ class Player extends Component {
   }
 
   refresh = () => {
+    console.log('REFRESH');
     // reset the url to reconnect to current stream instance
     RNAudioStreamer.setUrl(remoteStreamUrl);
     RNAudioStreamer.play();
