@@ -7,6 +7,7 @@ import Broadcasting from './Broadcasting';
 const mapStateToProps = state => ({
   status: state.player.status,
   bitrate: state.broadcasting.bitrate,
+  nav: state.navigation,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

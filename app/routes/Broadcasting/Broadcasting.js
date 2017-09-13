@@ -14,6 +14,10 @@ import StatusMessage from './components/StatusMessage';
 import NetworkControls from './components/NetworkControls/NetworkControls';
 
 class Broadcasting extends Component {
+  static navigationOptions = {
+    title: 'Трансляция',
+  }
+
   static propTypes = {
     status: PropTypes.string,
     bitrate: PropTypes.number,
@@ -25,6 +29,7 @@ class Broadcasting extends Component {
   }
 
   componentDidMount = () => {
+    console.log(this.props.nav);
     this.props.checkBitrate();
   }
 
