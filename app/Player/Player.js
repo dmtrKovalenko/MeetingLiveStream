@@ -34,7 +34,7 @@ class Player extends Component {
 
   onStatusChanged = (status) => {
     this.props.changeStatus(status);
-    autoReconnect(this.refresh);
+    autoReconnect(status, this.refresh);
   }
 
   playPause = () => {
