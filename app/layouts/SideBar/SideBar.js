@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 import { View, Image, Alert, Linking } from 'react-native';
 
 import styles from './SideBarStyles';
@@ -10,48 +11,46 @@ import TouchableListItem from '../../components/TouchebleListItem/TouchableListI
 
 const showAboutAlert = () => Alert.alert('О приложении', appDescription);
 
-const SideBar = (props) => {
-  console.log(props);
-  return (
-    <View style={styles.container}>
-      <Image source={sideBarBackground} style={styles.image}>
-        <Text style={styles.appName}>
+const SideBar = props => (
+  <View style={styles.container}>
+    <Image source={sideBarBackground} style={styles.image}>
+      <Text style={styles.appName}>
           Трансляция Собрания
-        </Text>
-        <Text style={styles.version}>
-          {version}
-        </Text>
-      </Image>
+      </Text>
+      <Text style={styles.version}>
+        {version}
+      </Text>
+    </Image>
 
-      <View style={styles.list}>
-        <TouchableListItem
-          selected
-          text="Cлушать трансляцию"
-          onPress={() => props.navigation.navigate('DrawerOpen')}
-          iconName="headset"
-        />
+    <View style={styles.list}>
+      <TouchableListItem
+        selected
+        text="Cлушать трансляцию"
+        onPress={Actions.broadcasting}
+        iconName="headset"
+      />
 
-        <TouchableListItem
-          text="Открыть веб-сайт"
-          onPress={() => Linking.openURL(webSiteUrl)}
-          iconName="browsers"
-        />
+      <TouchableListItem
+        text="Открыть веб-сайт"
+        onPress={() => Linking.openURL(webSiteUrl)}
+        iconName="browsers"
+      />
 
-        <TouchableListItem
-          text="Оставить отзыв"
-          iconName="chatbubbles"
-        />
-      </View>
-
-      <View style={styles.helpButton}>
-        <TouchableListItem
-          text="О приложении"
-          onPress={showAboutAlert}
-          iconName="help"
-        />
-      </View>
+      <TouchableListItem
+        text="Оставить отзыв"
+        iconName="chatbubbles"
+        onPress={Actions.settings}
+      />
     </View>
-  );
-};
+
+    <View style={styles.helpButton}>
+      <TouchableListItem
+        text="О приложении"
+        onPress={showAboutAlert}
+        iconName="help"
+      />
+    </View>
+  </View>
+);
 
 export default SideBar;

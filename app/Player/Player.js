@@ -7,21 +7,34 @@ import { CardItem, Left, Right, Icon } from 'native-base';
 import styles from './PlayerStyles';
 import IconButton from '../components/IconButton/IconButton';
 import ActionButton from '../components/ActionButton/ActionButton';
+import autoReconnect from '../utils/autoReconnect';
 import { remoteStreamUrl } from '../config/project.config';
 
 class Player extends Component {
   static propTypes = {
     isPlaying: PropTypes.bool,
     changeStatus: PropTypes.func.isRequired,
+    status: PropTypes.string,
   }
 
   componentDidMount() {
-    RNAudioStreamer.setUrl(remoteStreamUrl);
+    if (!this.props.status) {
+      RNAudioStreamer.setUrl(remoteStreamUrl);
+    }
 
     this.subscription = DeviceEventEmitter.addListener(
       'RNAudioStreamerStatusChanged',
-      status => this.props.changeStatus(status, this.refresh),
+      this.onStatusChanged,
     );
+  }
+
+  componentWillUnmount = () => {
+    this.subscription.remove();
+  }
+
+  onStatusChanged = (status) => {
+    this.props.changeStatus(status);
+    autoReconnect(this.refresh);
   }
 
   playPause = () => {
@@ -31,7 +44,6 @@ class Player extends Component {
   }
 
   refresh = () => {
-    console.log('REFRESH');
     // reset the url to reconnect to current stream instance
     RNAudioStreamer.setUrl(remoteStreamUrl);
     RNAudioStreamer.play();

@@ -11,7 +11,7 @@ import * as playerStatus from '../../../constants/PlayerStatuses';
 
 export default class StatusMessage extends DebouncedRenderer {
   static propTypes = {
-    status: PropTypes.string.isRequired,
+    status: PropTypes.oneOf(Object.values(playerStatus)),
   }
 
   shouldComponentUpdate = (nextProps, nextState) => (

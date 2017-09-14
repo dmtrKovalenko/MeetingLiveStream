@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 export default class Settings extends Component {
   static propTypes = {
-    prop: PropTypes,
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
