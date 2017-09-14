@@ -6,14 +6,14 @@ export const active = 'Трансляция активна';
 export const loading = 'Подключение';
 
 const messageMap = {
-  [playerStatus.BUFFERING]: loading,
-  [playerStatus.ERROR]: loading,
+  [playerStatus.PLAYING]: active,
+  [playerStatus.PAUSED]: active,
   [playerStatus.CONNECTIONOFF]: notConnected,
   [playerStatus.STOPPED]: notAccessible,
 };
 
 export default (status) => {
   const message = messageMap[status];
-  // if nothing was found return active state
-  return message || active;
+  // if nothing was found return loading state
+  return message || loading;
 };

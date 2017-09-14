@@ -1,4 +1,4 @@
-import { accentColor } from '../../../config/androidColorPallete';
+import { accentColor } from '../../config/androidColorPallete';
 
 export default {
   container: {

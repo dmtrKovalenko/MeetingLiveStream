@@ -1,31 +1,12 @@
 import { NetInfo } from 'react-native';
-import BackgroundTimer from 'react-native-background-timer';
 
+import timer from './Timer';
 import * as types from '../actionTypes';
 import * as statuses from '../constants/PlayerStatuses';
 import { displayStatusNotification } from '../utils/NotificationsManager';
 
-let timer;
-let callback;
-const autoReconnect = () => {
-  if (!timer) {
-    timer = BackgroundTimer.setInterval(callback, 5000);
-  }
-};
-
-const clearAutoReconnect = () => {
-  BackgroundTimer.clearInterval(timer);
-  timer = null;
-};
-
 export const statusChanged = (status) => {
   displayStatusNotification(status);
-
-  if (statuses.ERROR_STATUSES.includes(status)) {
-    autoReconnect();
-  } else if (statuses.PLAYING_STATUSES.includes(status)) {
-    clearAutoReconnect();
-  }
 
   return ({
     type: types.PLAYER_STATUS_CHANGED,
@@ -34,6 +15,8 @@ export const statusChanged = (status) => {
 };
 
 export const checkConnection = () => (dispatch) => {
+  dispatch(statusChanged(statuses.BUFFERING)); // display loading state
+
   NetInfo.isConnected.fetch().then((isConnected) => {
     const status = !isConnected
       ? statuses.CONNECTIONOFF
@@ -43,13 +26,14 @@ export const checkConnection = () => (dispatch) => {
   });
 };
 
-export const changeStatus = (status, autoReconnectCallback) => (dispatch) => {
-  callback = autoReconnectCallback;
+export const changeStatus = status => (dispatch, getState) => {
+  const previosStatus = getState().player.status;
 
-  if (status === statuses.STOPPED) {
-    dispatch(statusChanged(statuses.BUFFERING));
-    return dispatch(checkConnection());
+  if (status !== previosStatus) {
+    dispatch(timer(status));
+
+    status === statuses.STOPPED
+      ? dispatch(checkConnection())
+      : dispatch(statusChanged(status));
   }
-
-  dispatch(statusChanged(status));
 };

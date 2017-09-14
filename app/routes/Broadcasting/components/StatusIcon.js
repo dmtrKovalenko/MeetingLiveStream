@@ -10,7 +10,7 @@ import * as playerStatus from '../../../constants/PlayerStatuses';
 
 export default class StatusIcon extends DebouncedRenderer {
   static propTypes = {
-    status: PropTypes.string.isRequired,
+    status: PropTypes.oneOf(Object.values(playerStatus)),
   }
 
   shouldComponentUpdate = (nextProps, nextState) => (
@@ -27,7 +27,7 @@ export default class StatusIcon extends DebouncedRenderer {
   render() {
     const { status } = this.state;
 
-    if (status === playerStatus.BUFFERING || status === playerStatus.ERROR) {
+    if (!status || status === playerStatus.BUFFERING || status === playerStatus.ERROR) {
       return <Spinner color={accentColor} />;
     }
     if (status === playerStatus.STOPPED) {

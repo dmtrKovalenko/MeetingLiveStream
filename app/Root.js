@@ -1,12 +1,14 @@
 import React from 'react';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { StyleProvider, Container } from 'native-base';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
-import Layout from './layouts/CoreLayout';
-import Broadcasting from './routes/Broadcasting/BroadcastingContainer';
+import Routes from './Routes';
 import PlayerReducer from './reducers/Player';
 import BroadcastingReducer from './reducers/Broadcasting';
+import platform from '../native-base-theme/variables/platform';
+import getTheme from '../native-base-theme/components';
 
 const reducer = combineReducers({
   player: PlayerReducer,
@@ -17,8 +19,10 @@ const store = createStore(reducer, applyMiddleware(thunk));
 
 export default () => (
   <Provider store={store}>
-    <Layout>
-      <Broadcasting />
-    </Layout>
+    <StyleProvider style={getTheme(platform)}>
+      <Container>
+        <Routes />
+      </Container>
+    </StyleProvider>
   </Provider>
 );

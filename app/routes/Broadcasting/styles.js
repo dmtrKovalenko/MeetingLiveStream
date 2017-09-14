@@ -7,6 +7,9 @@ const deviceWidth = Dimensions.get('window').width;
 const linePadding = 20;
 
 export default {
+  broadcastingPage: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     flexDirection: 'column',

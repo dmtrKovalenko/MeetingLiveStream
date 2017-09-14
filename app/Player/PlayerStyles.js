@@ -1,4 +1,4 @@
-import { primaryColor, textColor } from '../config/androidColorPallete';
+import { primaryColor, accentColor, textColor } from '../config/androidColorPallete';
 
 const buttonWidth = 70;
 
@@ -15,8 +15,8 @@ export default {
     left: 0,
     right: 0,
     flex: 1,
-    elevation: 3,
-    borderTopColor: '#ccc',
+    elevation: 4,
+    borderTopColor: '#808080',
     borderTopWidth: 0.1,
   },
   cardItem: {
