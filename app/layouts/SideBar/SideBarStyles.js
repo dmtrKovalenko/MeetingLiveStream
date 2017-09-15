@@ -7,7 +7,7 @@ export default {
     padding: 0,
   },
   image: {
-    flex: 3,
+    flex: 1.7,
     alignItems: 'flex-end',
     resizeMode: 'cover',
     flexDirection: 'row',
@@ -28,7 +28,7 @@ export default {
   },
   list: {
     marginTop: 10,
-    flex: 4,
+    flex: 3,
   },
   textPrimary: {
     color: accentColor,

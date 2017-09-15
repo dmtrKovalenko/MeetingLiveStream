@@ -4,7 +4,7 @@ import { ListItem, Left, Icon, Body } from 'native-base';
 import { TouchableNativeFeedback, View, Text } from 'react-native';
 
 import styles from './TouchableListItemStyles';
-import { accentColor, textColor, nativeRippleColor } from './../../config/androidColorPallete';
+import { accentColor, textColor } from './../../config/androidColorPallete';
 
 const TouchableListItem = (props) => {
   const color = props.selected ? accentColor : textColor;
@@ -13,15 +13,12 @@ const TouchableListItem = (props) => {
     : styles.listItem;
 
   return (
-    <ListItem style={containerStyle}>
-      <TouchableNativeFeedback
-        background={nativeRippleColor}
-        onPress={props.onPress}
-      >
+    <ListItem style={containerStyle} noBorder={props.noBorder}>
+      <TouchableNativeFeedback onPress={props.onPress}>
         <View style={[styles.rippleListItem]}>
-          <Left style={styles.listIcon}>
-            <Icon name={props.iconName} style={{ color }} />
-          </Left>
+          <View style={styles.listIcon}>
+            <Icon name={props.iconName} style={{ color, fontSize: 23 }} />
+          </View>
 
           <Body style={styles.listBody}>
             <Text style={{ ...styles.text, color }}>
@@ -39,6 +36,11 @@ TouchableListItem.propTypes = {
   iconName: PropTypes.string,
   text: PropTypes.string,
   selected: PropTypes.bool,
+  noBorder: PropTypes.bool,
+};
+
+TouchableListItem.defaultProps = {
+  noBorder: true,
 };
 
 export default TouchableListItem;
