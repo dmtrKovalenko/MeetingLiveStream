@@ -1,3 +1,4 @@
+import color from 'color';
 import { TouchableNativeFeedback } from 'react-native';
 
 export const primaryColor = '#2196f3';
