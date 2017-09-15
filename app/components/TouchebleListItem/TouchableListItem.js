@@ -4,10 +4,16 @@ import { ListItem, Left, Icon, Body } from 'native-base';
 import { TouchableNativeFeedback, View, Text } from 'react-native';
 
 import styles from './TouchableListItemStyles';
-import { accentColor, textColor } from './../../config/androidColorPallete';
 
 const TouchableListItem = (props) => {
-  const color = props.selected ? accentColor : textColor;
+  const textStyle = props.selected
+    ? [styles.text, styles.selectedColor]
+    : styles.text;
+
+  const iconStyle = props.selected
+    ? [styles.icon, styles.selectedColor]
+    : styles.icon;
+
   const containerStyle = props.selected
     ? [styles.listItem, styles.selected]
     : styles.listItem;
@@ -17,11 +23,11 @@ const TouchableListItem = (props) => {
       <TouchableNativeFeedback onPress={props.onPress}>
         <View style={[styles.rippleListItem]}>
           <View style={styles.listIcon}>
-            <Icon name={props.iconName} style={{ color, fontSize: 23 }} />
+            <Icon name={props.iconName} style={iconStyle} />
           </View>
 
           <Body style={styles.listBody}>
-            <Text style={{ ...styles.text, color }}>
+            <Text style={textStyle}>
               {props.text}
             </Text>
           </Body>

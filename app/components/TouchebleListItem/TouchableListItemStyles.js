@@ -1,4 +1,4 @@
-import { highlightColor } from '../../config/androidColorPallete';
+import { highlightColor, accentColor, textColor, titleColor } from '../../config/androidColorPallete';
 
 export default {
   listItem: {
@@ -14,20 +14,27 @@ export default {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingLeft: 20,
-    marginRight: -20,
+    paddingLeft: 16,
+    marginRight: -16,
     height: 48,
   },
   text: {
     fontSize: 16,
-    color: '#000000',
     fontWeight: '400',
+    color: titleColor,
   },
   listBody: {
     flex: 8,
   },
   listIcon: {
-    flex: 1.5,
+    width: 40,
     padding: 0,
+  },
+  icon: {
+    fontSize: 22,
+    color: textColor,
+  },
+  selectedColor: {
+    color: accentColor,
   },
 };

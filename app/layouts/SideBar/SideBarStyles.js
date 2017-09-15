@@ -1,5 +1,8 @@
 import { accentColor } from '../../config/androidColorPallete';
 
+const drawerWidth = 304;
+const imageHeight = (drawerWidth * 9 / 16) + 20;
+
 export default {
   container: {
     flex: 1,
@@ -7,17 +10,17 @@ export default {
     padding: 0,
   },
   image: {
-    flex: 1.7,
+    height: imageHeight,
+    width: drawerWidth,
     alignItems: 'flex-end',
     resizeMode: 'cover',
     flexDirection: 'row',
     padding: 10,
-    width: null,
-    height: null,
   },
   appName: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 17,
+    fontWeight: '400',
     width: 190,
   },
   version: {
