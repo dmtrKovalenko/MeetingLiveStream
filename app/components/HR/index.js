@@ -6,7 +6,7 @@ const styles = {
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(0,0,0,54)',
   },
   text: {
     textAlign: 'center',
@@ -56,7 +56,7 @@ class Hr extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, this.props.style]}>
         {this.renderInner()}
       </View>
     );
@@ -67,6 +67,7 @@ Hr.propTypes = {
   lineStyle: PropTypes.shape({}),
   text: PropTypes.string,
   textStyle: PropTypes.shape({}),
+  style: PropTypes.shape({}),
 };
 
 export default Hr;
