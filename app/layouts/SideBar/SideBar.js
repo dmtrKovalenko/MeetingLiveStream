@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, List } from 'native-base';
+import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
-import { View, Image, Alert, Linking } from 'react-native';
+import { View, Image, Alert, Linking, Text } from 'react-native';
 
 import styles from './SideBarStyles';
 import { version } from '../../../package.json';
 import { webSiteUrl, appDescription } from '../../config/project.config';
+import HR from '../../components/HR';
 import sideBarBackground from '../../assets/sidebar-background.jpg';
 import TouchableListItem from '../../components/TouchebleListItem/TouchableListItem';
 
@@ -13,7 +14,7 @@ const showAboutAlert = () => Alert.alert('О приложении', appDescripti
 
 const SideBar = (props) => {
   const isSelected = key => props.activeItemKey === key;
-  console.log(props);
+
   return (
     <View style={styles.container}>
       <Image source={sideBarBackground} style={styles.image}>
@@ -36,7 +37,7 @@ const SideBar = (props) => {
         <TouchableListItem
           text="Открыть веб-сайт"
           onPress={() => Linking.openURL(webSiteUrl)}
-          iconName="browsers"
+          iconName="globe"
         />
 
         <TouchableListItem
@@ -44,9 +45,9 @@ const SideBar = (props) => {
           iconName="chatbubbles"
           onPress={Actions.settings}
         />
-      </View>
 
-      <View style={styles.helpButton}>
+        <HR style={styles.divider} lineStyle={styles.dividerLine} />
+
         <TouchableListItem
           selected={isSelected('settings')}
           text="Настройки"
@@ -62,6 +63,10 @@ const SideBar = (props) => {
       </View>
     </View>
   );
+};
+
+SideBar.propTypes = {
+  activeItemKey: PropTypes.string,
 };
 
 export default SideBar;

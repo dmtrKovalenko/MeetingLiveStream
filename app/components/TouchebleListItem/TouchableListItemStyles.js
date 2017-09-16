@@ -19,9 +19,10 @@ export default {
     height: 48,
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '400',
     color: titleColor,
+    fontFamily: 'Roboto_medium',
   },
   listBody: {
     flex: 8,
