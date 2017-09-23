@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { H1 } from 'native-base';
+import { H1, Card } from 'native-base';
 import { View, Text } from 'react-native';
 
 import styles from './styles';
@@ -58,6 +58,7 @@ class Broadcasting extends Component {
             bitrate={this.props.bitrate}
             currentTime={this.props.currentTime}
           />
+
         </View>
         <Player />
       </View>

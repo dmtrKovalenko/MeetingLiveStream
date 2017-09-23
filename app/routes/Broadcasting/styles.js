@@ -19,17 +19,17 @@ export default {
     alignItems: 'center',
   },
   iconContainer: {
-    flex: 2.7,
+    flex: 2.5,
     flexDirection: 'row',
     alignItems: 'center',
   },
   icon: {
     marginTop: -10,
-    fontSize: 43,
+    fontSize: 45,
     color: textColor,
   },
   titleContainer: {
-    flex: 1.5,
+    flex: 1.2,
     alignItems: 'center',
   },
   title: {

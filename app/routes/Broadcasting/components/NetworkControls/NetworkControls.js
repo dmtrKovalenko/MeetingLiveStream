@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { Card } from 'native-base';
+import { View, Text, TouchableWithoutFeedback, ToastAndroid } from 'react-native';
 
 import styles from './NetworkControlsStyles';
 
@@ -9,15 +10,17 @@ const NetworkControls = ({ currentTime, bitrate }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.additionalText}>
-        { bitrate } kb/s
-      </Text>
+      <TouchableWithoutFeedback onPress={() => ToastAndroid.show('Битрейт', ToastAndroid.SHORT)}>
+        <Card style={styles.card}>
+          <Text style={styles.text}> { bitrate } kb/s </Text>
+        </Card>
+      </TouchableWithoutFeedback>
 
-      <Text style={styles.separator}> | </Text>
-
-      <Text style={styles.additionalText}>
-        { traffic } mb
-      </Text>
+      <TouchableWithoutFeedback onPress={() => ToastAndroid.show('Трафик текущей трансляции', ToastAndroid.SHORT)}>
+        <Card style={styles.card}>
+          <Text style={styles.text}> { traffic } mb </Text>
+        </Card>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
