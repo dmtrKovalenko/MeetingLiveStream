@@ -33,15 +33,6 @@ export default {
     marginTop: 10,
     flex: 3,
   },
-  divider: {
-    marginLeft: 0,
-    marginRight: 0,
-    marginVertical: 8,
-  },
-  dividerLine: {
-    height: 0.2,
-    backgroundColor: 'rgba(0,0,0,14)',
-  },
   textPrimary: {
     color: accentColor,
   },

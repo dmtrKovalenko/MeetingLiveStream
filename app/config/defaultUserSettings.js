@@ -1,3 +1,8 @@
 export default {
-  autoReconnect: true,
+  autoplay: false,
+  mobileConnection: true,
+  autoreconnect: true,
+  reconnectTimeout: 5,
+  showNotifications: true,
+  trafficControl: true,
 };

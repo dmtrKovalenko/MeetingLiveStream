@@ -3,26 +3,26 @@ import { AsyncStorage } from 'react-native';
 import * as types from '../actionTypes';
 import defaultSettings from '../config/defaultUserSettings';
 
-const key = '@@Settings';
+const settingsStorageKey = '@@Settings';
 
 export const setSettings = createAction(types.SET_SETTINGS);
 
 const saveSettings = async (newEntry) => {
-  const settings = JSON.parse(await AsyncStorage.getItem(key));
+  const settings = JSON.parse(await AsyncStorage.getItem(settingsStorageKey));
 
-  const updated = { ...settings, newEntry };
-  AsyncStorage.setItem(JSON.stringify(updated));
+  const updated = { ...settings, ...newEntry };
+  AsyncStorage.setItem(settingsStorageKey, JSON.stringify(updated));
 };
 
-export const setSettingItem = (name, value) => {
-  const entry = { [name]: value };
+export const setSettingItem = (key, value) => {
+  const entry = { [key]: value };
   saveSettings(entry);
 
-  return entry;
+  return setSettings(entry);
 };
 
 export const rehydrateSettings = () => async (dispatch) => {
-  let settings = await AsyncStorage.getItem(key);
+  let settings = JSON.parse(await AsyncStorage.getItem(settingsStorageKey));
   settings = { ...defaultSettings, ...settings };
 
   dispatch(setSettings(settings));

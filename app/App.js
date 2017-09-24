@@ -35,6 +35,8 @@ export class Routes extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ rehydrateSettings }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  rehydrateSettings,
+}, dispatch);
 
 export default connect(null, mapDispatchToProps)(Routes);

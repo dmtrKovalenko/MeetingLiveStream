@@ -6,7 +6,7 @@ import { View, Image, Alert, Linking, Text } from 'react-native';
 import styles from './SideBarStyles';
 import { version } from '../../../package.json';
 import { webSiteUrl, appDescription } from '../../config/project.config';
-import HR from '../../components/HR';
+import Divider from '../../components/HR/Divider';
 import sideBarBackground from '../../assets/sidebar-background.jpg';
 import TouchableListItem from '../../components/TouchebleListItem/TouchableListItem';
 
@@ -19,7 +19,7 @@ const SideBar = (props) => {
     <View style={styles.container}>
       <Image source={sideBarBackground} style={styles.image}>
         <Text style={styles.appName}>
-        Трансляция Собрания
+          Трансляция Собрания
         </Text>
         <Text style={styles.version}>
           {version}
@@ -46,7 +46,7 @@ const SideBar = (props) => {
           onPress={Actions.settings}
         />
 
-        <HR style={styles.divider} lineStyle={styles.dividerLine} />
+        <Divider />
 
         <TouchableListItem
           selected={isSelected('settings')}

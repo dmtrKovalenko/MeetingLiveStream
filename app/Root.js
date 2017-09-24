@@ -1,7 +1,7 @@
 import React from 'react';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { StyleProvider, Container } from 'native-base';
+import { StyleProvider, Container, Root } from 'native-base';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 import App from './App';
@@ -23,7 +23,9 @@ export default () => (
   <Provider store={store}>
     <StyleProvider style={getTheme(platform)}>
       <Container>
-        <App />
+        <Root>
+          <App />
+        </Root>
       </Container>
     </StyleProvider>
   </Provider>
