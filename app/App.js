@@ -9,6 +9,7 @@ import SideBar from './layouts/SideBar/SideBar';
 import Settings from './routes/Settings/SettingsContainer';
 import Broadcasting from './routes/Broadcasting/BroadcastingContainer';
 import { rehydrateSettings } from './actions/Settings';
+import { checkConnection } from './actions/NetInfo';
 
 const getSceneStyle = () => ({
   backgroundColor: '#fff',
@@ -17,10 +18,12 @@ const getSceneStyle = () => ({
 export class Routes extends Component {
   static propTypes = {
     rehydrateSettings: PropTypes.func,
+    checkConnection: PropTypes.func,
   }
 
   componentWillMount = () => {
     this.props.rehydrateSettings();
+    this.props.checkConnection();
   }
 
   render() {
@@ -37,6 +40,7 @@ export class Routes extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   rehydrateSettings,
+  checkConnection,
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Routes);

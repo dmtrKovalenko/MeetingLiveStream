@@ -13,13 +13,20 @@ import { remoteStreamUrl } from '../config/project.config';
 class Player extends Component {
   static propTypes = {
     isPlaying: PropTypes.bool,
+    toAutoReconnect: PropTypes.bool,
+    reconnectTimeout: PropTypes.number,
     changeStatus: PropTypes.func.isRequired,
     status: PropTypes.string,
+    autoplay: PropTypes.bool,
   }
 
   componentDidMount() {
     if (!this.props.status) {
       RNAudioStreamer.setUrl(remoteStreamUrl);
+
+      if (this.props.autoplay) {
+        RNAudioStreamer.play();
+      }
     }
 
     this.subscription = DeviceEventEmitter.addListener(
@@ -34,19 +41,22 @@ class Player extends Component {
 
   onStatusChanged = (status) => {
     this.props.changeStatus(status);
-    autoReconnect(status, this.refresh);
-  }
-
-  playPause = () => {
-    this.props.isPlaying
-      ? RNAudioStreamer.pause()
-      : RNAudioStreamer.play();
+    if (this.props.toAutoReconnect) {
+      // if failed set timeout and reconnect each ${reconnectTimeout} seconds
+      autoReconnect(status, this.refresh, this.props.reconnectTimeout);
+    }
   }
 
   refresh = () => {
     // reset the url to reconnect to current stream instance
     RNAudioStreamer.setUrl(remoteStreamUrl);
     RNAudioStreamer.play();
+  }
+
+  playPause = () => {
+    this.props.isPlaying
+      ? RNAudioStreamer.pause()
+      : RNAudioStreamer.play();
   }
 
   render() {

@@ -5,9 +5,12 @@ import Player from './Player';
 import * as actions from '../actions/Player';
 import * as statuses from '../constants/PlayerStatuses';
 
-const mapStateToProps = ({ player }) => ({
+const mapStateToProps = ({ player, settings }) => ({
   status: player.status,
   isPlaying: player.status === statuses.PLAYING,
+  toAutoReconnect: settings.autoreconnect,
+  reconnectTimeout: settings.reconnectTimeout,
+  autoplay: settings.autoplay,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

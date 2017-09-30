@@ -8,6 +8,7 @@ import App from './App';
 import PlayerReducer from './reducers/Player';
 import BroadcastingReducer from './reducers/Broadcasting';
 import SettingsReducer from './reducers/Settings';
+import NetInfoReducer from './reducers/NetInfo';
 import platform from '../native-base-theme/variables/platform';
 import getTheme from '../native-base-theme/components';
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   player: PlayerReducer,
   broadcasting: BroadcastingReducer,
   settings: SettingsReducer,
+  netInfo: NetInfoReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk));

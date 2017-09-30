@@ -12,9 +12,9 @@ export const toClearStatuses = [
 ];
 
 let timer;
-const autoReconnect = (callback) => {
+const autoReconnect = (callback, timeout) => {
   if (!timer) {
-    timer = BackgroundTimer.setInterval(callback, 5000);
+    timer = BackgroundTimer.setInterval(callback, timeout * 1000);
   }
 };
 
@@ -23,9 +23,9 @@ const clearAutoReconnect = () => {
   timer = null;
 };
 
-export default (status, callback) => {
+export default (status, callback, timeout) => {
   if (toAutoRecconectStatuses.includes(status)) {
-    autoReconnect(callback);
+    autoReconnect(callback, timeout);
   } else if (toClearStatuses.includes(status)) {
     clearAutoReconnect();
   }
