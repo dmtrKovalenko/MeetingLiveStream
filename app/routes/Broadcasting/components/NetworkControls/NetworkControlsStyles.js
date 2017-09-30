@@ -12,6 +12,10 @@ export default {
     marginBottom: deviceHeight / 15,
     alignItems: 'flex-start',
   },
+  fillMargin: {
+    flex: 0,
+    marginBottom: deviceHeight / 15,
+  },
   card: {
     flex: 2,
     maxWidth: 95,

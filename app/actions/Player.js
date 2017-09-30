@@ -1,17 +1,20 @@
 import { NetInfo } from 'react-native';
+import { createAction } from 'redux-actions';
 
 import timer from './Timer';
 import * as types from '../actionTypes';
 import * as statuses from '../constants/PlayerStatuses';
 import { displayStatusNotification } from '../utils/NotificationsManager';
 
-export const statusChanged = (status) => {
-  displayStatusNotification(status);
+const statusChange = createAction(types.PLAYER_STATUS_CHANGED);
 
-  return ({
-    type: types.PLAYER_STATUS_CHANGED,
-    payload: status,
-  });
+export const statusChanged = status => (dispatch, getState) => {
+  const { showNotifications } = getState().settings;
+  if (showNotifications) {
+    displayStatusNotification(status);
+  }
+
+  dispatch(statusChange(status));
 };
 
 export const checkConnection = () => (dispatch) => {

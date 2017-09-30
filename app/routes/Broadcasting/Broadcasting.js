@@ -17,6 +17,14 @@ class Broadcasting extends Component {
     bitrate: PropTypes.number,
     checkBitrate: PropTypes.func,
     currentTime: PropTypes.number,
+    settings: PropTypes.shape({
+      autoplay: PropTypes.bool,
+      mobileConnection: PropTypes.bool,
+      autoreconnect: PropTypes.bool,
+      reconnectTimeout: PropTypes.number,
+      showNotifications: PropTypes.bool,
+      trafficControl: PropTypes.bool,
+    }),
   }
 
   componentDidMount = () => {
@@ -32,7 +40,6 @@ class Broadcasting extends Component {
   }
 
   render() {
-    console.log(this.props.status);
     return (
       <View style={styles.broadcastingPage}>
         <View style={styles.container}>
@@ -57,12 +64,12 @@ class Broadcasting extends Component {
           <NetworkControls
             bitrate={this.props.bitrate}
             currentTime={this.props.currentTime}
+            show={this.props.settings.trafficControl}
           />
-
         </View>
+
         <Player />
       </View>
-
     );
   }
 }

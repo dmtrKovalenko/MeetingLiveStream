@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   status: state.player.status,
   currentTime: state.player.currentTime,
   bitrate: state.broadcasting.bitrate,
+  settings: state.settings,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

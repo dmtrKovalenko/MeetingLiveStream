@@ -5,10 +5,10 @@ import { View, Text, TouchableWithoutFeedback, ToastAndroid } from 'react-native
 
 import styles from './NetworkControlsStyles';
 
-const NetworkControls = ({ currentTime, bitrate }) => {
+const NetworkControls = ({ currentTime, bitrate, show }) => {
   const traffic = ((currentTime * bitrate) / 1024).toFixed(1);
 
-  return (
+  return show ?
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={() => ToastAndroid.show('Битрейт', ToastAndroid.SHORT)}>
         <Card style={styles.card}>
@@ -22,12 +22,13 @@ const NetworkControls = ({ currentTime, bitrate }) => {
         </Card>
       </TouchableWithoutFeedback>
     </View>
-  );
+    : <View style={styles.fillMargin} />;
 };
 
 NetworkControls.propTypes = {
   bitrate: PropTypes.number,
   currentTime: PropTypes.number,
+  show: PropTypes.bool,
 };
 
 export default NetworkControls;
