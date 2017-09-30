@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import { AsyncStorage } from 'react-native';
 import * as types from '../actionTypes';
+import * as connectionTypes from '../constants/NetStatus';
 import defaultSettings from '../config/defaultUserSettings';
 
 const settingsStorageKey = '@@Settings';
@@ -28,3 +29,9 @@ export const rehydrateSettings = () => async (dispatch) => {
   dispatch(setSettings(settings));
 };
 
+
+export const isAllowedToStream = () => (dispatch, getState) => {
+  const { settings, netInfo } = getState();
+
+  return settings.mobileConnection || netInfo.connectionType === connectionTypes.MOBILE;
+};

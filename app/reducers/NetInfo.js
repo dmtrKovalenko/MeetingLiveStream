@@ -3,11 +3,10 @@ import * as types from '../actionTypes';
 
 const initialState = {
   connectionType: null,
-  isAllowedToStream: false,
 };
 
 export default handleActions({
-  [types.CONNECTION_STATE_CHANGED]: (state, { payload }) => {
-    console.log(payload);
-  },
+  [types.CONNECTION_STATE_CHANGED]: (state, { payload }) => ({
+    ...state, connectionType: payload,
+  }),
 }, initialState);

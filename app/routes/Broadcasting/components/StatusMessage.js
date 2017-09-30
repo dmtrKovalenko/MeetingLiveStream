@@ -12,10 +12,14 @@ import * as playerStatus from '../../../constants/PlayerStatuses';
 export default class StatusMessage extends DebouncedRenderer {
   static propTypes = {
     status: PropTypes.oneOf(Object.values(playerStatus)),
+    connectionStatus: PropTypes.string,
+    isAllowedToStream: PropTypes.bool,
   }
 
   shouldComponentUpdate = (nextProps, nextState) => (
     this.props.status !== nextProps.status ||
+    this.props.connectionStatus !== nextProps.connectionStatus ||
+    this.props.isAllowedToStream !== nextProps.isAllowedToStream ||
     this.state !== nextState
   )
 
@@ -26,14 +30,12 @@ export default class StatusMessage extends DebouncedRenderer {
   }
 
   render() {
-    const message = getStatusMessage(this.state.status);
+    const { connectionStatus, isAllowedToStream } = this.props;
+    const message = getStatusMessage(this.state.status, connectionStatus, isAllowedToStream);
 
     return (
       <View style={styles.lineContainer}>
-        <Hr
-          lineColor={textColor}
-          text={message}
-        />
+        <Hr lineColor={textColor} text={message} />
       </View>
     );
   }

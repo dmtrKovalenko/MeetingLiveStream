@@ -5,25 +5,27 @@ import * as connectionStatus from '../constants/NetStatus';
 
 const setConnectionState = createAction(types.CONNECTION_STATE_CHANGED);
 
-export const onConnectionChange = isConnected => (dispatch) => {
-  if (!isConnected) {
-    return dispatch(setConnectionState(connectionStatus.OFFLINE));
+const parseConnectionType = (type) => {
+  // can be without breaks because of return
+  switch (type) {
+    case 'none':
+      return connectionStatus.OFFLINE;
+    case 'cellular':
+      return connectionStatus.MOBILE;
+    default:
+      return connectionStatus.WIFI;
   }
+};
 
-  NetInfo.getConnectionInfo()
-    .then(({ type }) => {
-      console.log(type);
-      const status = type === 'cellular'
-        ? connectionStatus.MOBILE
-        : connectionStatus.WIFI;
+export const onConnectionChange = ({ type }) => (dispatch) => {
+  const connectionType = parseConnectionType(type);
 
-      dispatch(setConnectionState(status));
-    });
+  dispatch(setConnectionState(connectionType));
 };
 
 export const checkConnection = () => (dispatch) => {
-  const callback = isConnected => dispatch(onConnectionChange(isConnected));
+  const callback = connectionInfo => dispatch(onConnectionChange(connectionInfo));
 
-  NetInfo.isConnected.fetch().then(callback); // first time
-  NetInfo.isConnected.addEventListener('change', callback); // subscribe
+  NetInfo.getConnectionInfo().then(callback); // first time
+  NetInfo.addEventListener('connectionChange', callback); // subscribe
 };

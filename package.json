@@ -11,7 +11,7 @@
     "native-base": "^2.0.11",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-native": "^0.47.0",
+    "react-native": "^0.48.4",
     "react-native-audio-streamer": "0.0.9",
     "react-native-background-timer": "^1.0.0",
     "react-native-push-notification": "^3.0.1",

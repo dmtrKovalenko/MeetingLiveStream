@@ -3,40 +3,21 @@ import { createAction } from 'redux-actions';
 
 import timer from './Timer';
 import * as types from '../actionTypes';
-import * as statuses from '../constants/PlayerStatuses';
 import { displayStatusNotification } from '../utils/NotificationsManager';
 
-const statusChange = createAction(types.PLAYER_STATUS_CHANGED);
-
-export const statusChanged = status => (dispatch, getState) => {
-  const { showNotifications } = getState().settings;
-  if (showNotifications) {
-    displayStatusNotification(status);
-  }
-
-  dispatch(statusChange(status));
-};
-
-export const checkConnection = () => (dispatch) => {
-  dispatch(statusChanged(statuses.BUFFERING)); // display loading state
-
-  NetInfo.isConnected.fetch().then((isConnected) => {
-    const status = !isConnected
-      ? statuses.CONNECTIONOFF
-      : statuses.STOPPED;
-
-    dispatch(statusChanged(status));
-  });
-};
+export const statusChanged = createAction(types.PLAYER_STATUS_CHANGED);
 
 export const changeStatus = status => (dispatch, getState) => {
-  const previosStatus = getState().player.status;
+  const { player, settings } = getState();
+  const previousStatus = player.status;
 
-  if (status !== previosStatus) {
+  if (status !== previousStatus) {
     dispatch(timer(status));
 
-    status === statuses.STOPPED
-      ? dispatch(checkConnection())
-      : dispatch(statusChanged(status));
+    if (settings.showNotifications) {
+      displayStatusNotification(status);
+    }
+
+    dispatch(statusChanged(status));
   }
 };

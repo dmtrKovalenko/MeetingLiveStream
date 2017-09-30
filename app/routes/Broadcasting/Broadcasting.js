@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { H1, Card } from 'native-base';
+import { H1 } from 'native-base';
 import { View, Text } from 'react-native';
 
 import styles from './styles';
@@ -17,6 +17,8 @@ class Broadcasting extends Component {
     bitrate: PropTypes.number,
     checkBitrate: PropTypes.func,
     currentTime: PropTypes.number,
+    connectionStatus: PropTypes.string,
+    isAllowedToStream: PropTypes.func,
     settings: PropTypes.shape({
       autoplay: PropTypes.bool,
       mobileConnection: PropTypes.bool,
@@ -44,7 +46,11 @@ class Broadcasting extends Component {
       <View style={styles.broadcastingPage}>
         <View style={styles.container}>
           <View style={styles.iconContainer}>
-            <StatusIcon status={this.props.status} />
+            <StatusIcon
+              status={this.props.status}
+              connectionStatus={this.props.connectionStatus}
+              isAllowedToStream={this.props.isAllowedToStream()}
+            />
           </View>
 
           <View style={styles.titleContainer}>
@@ -52,7 +58,11 @@ class Broadcasting extends Component {
               {meetingName}
             </H1>
 
-            <StatusMessage status={this.props.status} />
+            <StatusMessage
+              status={this.props.status}
+              connectionStatus={this.props.connectionStatus}
+              isAllowedToStream={this.props.isAllowedToStream()}
+            />
           </View>
 
           <View style={styles.timeContainer}>
