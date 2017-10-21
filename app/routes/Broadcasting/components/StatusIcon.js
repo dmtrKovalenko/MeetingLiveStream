@@ -10,6 +10,7 @@ import * as playerStatus from '../../../constants/PlayerStatuses';
 
 export default class StatusIcon extends DebouncedRenderer {
   static propTypes = {
+    isAllowedToStream: PropTypes.bool.isRequired,
     status: PropTypes.oneOf(Object.values(playerStatus)),
   }
 
@@ -27,6 +28,10 @@ export default class StatusIcon extends DebouncedRenderer {
   render() {
     const { status } = this.state;
 
+    if (!this.props.isAllowedToStream) {
+      return <MaterialIcon name="signal-cellular-connected-no-internet-4-bar" style={styles.icon} />;
+    }
+
     if (!status || status === playerStatus.BUFFERING || status === playerStatus.ERROR) {
       return <Spinner color={accentColor} />;
     }
@@ -34,7 +39,7 @@ export default class StatusIcon extends DebouncedRenderer {
       return <Icon name="ios-mic-off" style={styles.icon} />;
     }
     if (status === playerStatus.CONNECTIONOFF) {
-      return <MaterialIcon name="signal-wifi-off" style={styles.icon} />;
+      return <MaterialIcon name="" style={styles.icon} />;
     }
 
     return <Icon name="ios-radio-outline" style={styles.icon} />;

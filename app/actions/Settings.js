@@ -33,5 +33,5 @@ export const rehydrateSettings = () => async (dispatch) => {
 export const isAllowedToStream = () => (dispatch, getState) => {
   const { settings, netInfo } = getState();
 
-  return settings.mobileConnection || netInfo.connectionType === connectionTypes.MOBILE;
+  return settings.mobileConnection || netInfo.connectionType !== connectionTypes.MOBILE;
 };

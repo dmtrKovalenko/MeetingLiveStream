@@ -17,10 +17,10 @@ export default status => (dispatch) => {
     }
   } else {
     if (status === playerStatus.STOPPED) {
-      dispatch(resetTime());
+      dispatch(resetTime()); // reset time to 0 if stopped
     }
 
-    // if paused or error throw stop
+    // if paused or error clear but not reset
     BackgroundTimer.clearInterval(timer);
     timer = null;
   }

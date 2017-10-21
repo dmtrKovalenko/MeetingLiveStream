@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RNAudioStreamer from 'react-native-audio-streamer';
 import { View, DeviceEventEmitter } from 'react-native';
@@ -10,22 +10,26 @@ import ActionButton from '../components/ActionButton/ActionButton';
 import autoReconnect from '../utils/autoReconnect';
 import { remoteStreamUrl } from '../config/project.config';
 
-class Player extends Component {
+class Player extends PureComponent {
   static propTypes = {
     isPlaying: PropTypes.bool,
     toAutoReconnect: PropTypes.bool,
     reconnectTimeout: PropTypes.number,
     changeStatus: PropTypes.func.isRequired,
+    isAllowedToStream: PropTypes.func.isRequired,
     status: PropTypes.string,
     autoplay: PropTypes.bool,
   }
 
   componentDidMount() {
+    console.log(this.props.autoplay);
     if (!this.props.status) {
-      RNAudioStreamer.setUrl(remoteStreamUrl);
+      if (this.props.isAllowedToStream()) {
+        RNAudioStreamer.setUrl(remoteStreamUrl);
 
-      if (this.props.autoplay) {
-        RNAudioStreamer.play();
+        if (this.props.autoplay) {
+          RNAudioStreamer.play();
+        }
       }
     }
 
@@ -33,6 +37,12 @@ class Player extends Component {
       'RNAudioStreamerStatusChanged',
       this.onStatusChanged,
     );
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (!this.props.isAllowedToStream()) {
+      RNAudioStreamer.pause();
+    }
   }
 
   componentWillUnmount = () => {
@@ -49,14 +59,18 @@ class Player extends Component {
 
   refresh = () => {
     // reset the url to reconnect to current stream instance
-    RNAudioStreamer.setUrl(remoteStreamUrl);
-    RNAudioStreamer.play();
+    if (this.props.isAllowedToStream()) {
+      RNAudioStreamer.setUrl(remoteStreamUrl);
+      RNAudioStreamer.play();
+    }
   }
 
   playPause = () => {
-    this.props.isPlaying
-      ? RNAudioStreamer.pause()
-      : RNAudioStreamer.play();
+    if (this.props.isAllowedToStream()) {
+      this.props.isPlaying
+        ? RNAudioStreamer.pause()
+        : RNAudioStreamer.play();
+    }
   }
 
   render() {

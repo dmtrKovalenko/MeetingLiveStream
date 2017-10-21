@@ -1,4 +1,3 @@
-import { NetInfo } from 'react-native';
 import { createAction } from 'redux-actions';
 
 import timer from './Timer';

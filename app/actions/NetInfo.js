@@ -8,12 +8,12 @@ const setConnectionState = createAction(types.CONNECTION_STATE_CHANGED);
 const parseConnectionType = (type) => {
   // can be without breaks because of return
   switch (type) {
-    case 'none':
-      return connectionStatus.OFFLINE;
     case 'cellular':
       return connectionStatus.MOBILE;
-    default:
+    case 'wifi':
       return connectionStatus.WIFI;
+    default:
+      return connectionStatus.OFFLINE;
   }
 };
 

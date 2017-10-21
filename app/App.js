@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Router, Scene } from 'react-native-router-flux';
+import { Spinner } from 'native-base';
 
 import Navbar from './layouts/Header/Header';
 import SideBar from './layouts/SideBar/SideBar';
@@ -19,6 +20,7 @@ export class Routes extends Component {
   static propTypes = {
     rehydrateSettings: PropTypes.func,
     checkConnection: PropTypes.func,
+    settingsInitialized: PropTypes.bool,
   }
 
   componentWillMount = () => {
@@ -27,6 +29,11 @@ export class Routes extends Component {
   }
 
   render() {
+    // ToDo add splash page
+    if (!this.props.settingsInitialized) {
+      return <Spinner />;
+    }
+
     return (
       <Router getSceneStyle={getSceneStyle}>
         <Scene key="drawer" drawer contentComponent={SideBar} navBar={Navbar}>
@@ -38,9 +45,13 @@ export class Routes extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  settingsInitialized: state.settings.initialized,
+});
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   rehydrateSettings,
   checkConnection,
 }, dispatch);
 
-export default connect(null, mapDispatchToProps)(Routes);
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);
